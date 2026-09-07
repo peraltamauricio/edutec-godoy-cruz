@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDUTEC GODOY CRUZ</title>
+<style>
+:root {
+  --navy: #002B5E;
+  --blue: #1565C0;
+  --sky: #2196F3;
+  --sky-light: #E3F2FD;
+  --gold: #D4890F;
+  --gold-light: #FFF8E1;
+  --green: #1B7A3E;
+  --green-light: #E8F5E9;
+  --amber: #C67E0C;
+  --amber-light: #FFF3E0;
+  --red: #B52020;
+  --red-light: #FFEBEE;
+  --bg: #F2F5FB;
+  --surface: #FFFFFF;
+  --border: #D5DFF0;
+  --text: #0C1B2E;
+  --muted: #5A6E88;
+  --sidebar-bg: #001E47;
+  --sidebar-text: #9DB5CF;
+  --sidebar-active: #FFFFFF;
+  --sidebar-w: 232px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #06101E;
+    --surface: #0C1A2C;
+    --border: #1A2F4A;
+    --text: #DDE8F8;
+    --muted: #6D8BAA;
+    --sky-light: #0A1E38;
+    --gold-light: #1E1200;
+    --green-light: #071510;
+    --amber-light: #1A1000;
+    --red-light: #1A0808;
+    --sidebar-bg: #030C1A;
+    --sidebar-text: #7A9BB8;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #F2F5FB; --surface: #FFF; --border: #D5DFF0; --text: #0C1B2E; --muted: #5A6E88;
+  --sky-light: #E3F2FD; --gold-light: #FFF8E1; --green-light: #E8F5E9;
+  --amber-light: #FFF3E0; --red-light: #FFEBEE;
+  --sidebar-bg: #001E47; --sidebar-text: #9DB5CF;
+}
+:root[data-theme="dark"] {
+  --bg: #06101E; --surface: #0C1A2C; --border: #1A2F4A; --text: #DDE8F8; --muted: #6D8BAA;
+  --sky-light: #0A1E38; --gold-light: #1E1200; --green-light: #071510;
+  --amber-light: #1A1000; --red-light: #1A0808;
+  --sidebar-bg: #030C1A; --sidebar-text: #7A9BB8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;font-size:13.5px;line-height:1.5;color:var(--text);background:var(--bg);display:flex;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{width:var(--sidebar-w);background:var(--sidebar-bg);min-height:100vh;display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100}
+.sb-logo{padding:18px 16px 14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-badge{background:var(--gold);color:#fff;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:6px}
+.sb-logo h1{color:#fff;font-size:14.5px;font-weight:800;line-height:1.25;text-wrap:balance}
+.sb-logo p{color:var(--sidebar-text);font-size:11px;margin-top:3px}
+.sb-nav{flex:1;padding:6px 0;overflow-y:auto}
+.sb-sect{padding:12px 16px 4px;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(157,181,207,.4)}
+.nav-item{display:flex;align-items:center;gap:10px;padding:8px 16px;color:var(--sidebar-text);cursor:pointer;border-left:3px solid transparent;font-size:13px;transition:all .12s;user-select:none}
+.nav-item:hover{color:#fff;background:rgba(255,255,255,.05)}
+.nav-item.active{color:var(--sidebar-active);background:rgba(33,150,243,.14);border-left-color:var(--sky);font-weight:600}
+.nav-icon{width:18px;text-align:center;font-size:15px;flex-shrink:0}
+.nb{margin-left:auto;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;min-width:20px;text-align:center}
+.nb-red{background:var(--red);color:#fff}
+.nb-blue{background:var(--blue);color:#fff}
+.nb-gold{background:var(--gold);color:#fff}
+.sb-footer{padding:12px 16px;border-top:1px solid rgba(255,255,255,.08)}
+.theme-btn{display:flex;align-items:center;gap:8px;color:var(--sidebar-text);font-size:12px;cursor:pointer;background:none;border:none;width:100%;padding:4px 0}
+.theme-btn:hover{color:#fff}
+
+/* MAIN */
+.main{margin-left:var(--sidebar-w);flex:1;min-width:0}
+.topbar{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:50px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50}
+.page-title{font-size:15px;font-weight:700}
+.topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.date-chip{font-size:11.5px;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:3px 10px;border-radius:20px}
+
+.content{padding:22px 24px;max-width:1200px}
+.section{display:none}.section.active{display:block}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:14px;margin-bottom:22px}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.kpi.blue::before{background:var(--sky)}
+.kpi.gold::before{background:var(--gold)}
+.kpi.green::before{background:var(--green)}
+.kpi.red::before{background:var(--red)}
+.kpi.amber::before{background:var(--amber)}
+.kpi-label{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.kpi-val{font-size:30px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.kpi-sub{font-size:11.5px;color:var(--muted);margin-top:4px}
+
+/* CARD */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:18px}
+.card-hd{padding:13px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.card-title{font-size:13.5px;font-weight:700;flex:1}
+.card-body{padding:18px}
+
+/* SEARCH */
+.search-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.s-input{flex:1;min-width:180px;padding:7px 12px;border:1px solid var(--border);border-radius:7px;background:var(--bg);color:var(--text);font-size:13px;outline:none}
+.s-input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(33,150,243,.12)}
+.s-sel{padding:7px 10px;border:1px solid var(--border);border-radius:7px;background:var(--bg);color:var(--text);font-size:13px;outline:none;cursor:pointer}
+
+/* TABLE */
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+th{text-align:left;font-size:10.5px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:9px 12px;background:var(--bg);border-bottom:1px solid var(--border);white-space:nowrap;cursor:pointer;user-select:none}
+th:hover{color:var(--text)}
+td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--bg)}
+.mono{font-family:'Courier New',Consolas,monospace;font-size:11.5px;letter-spacing:.02em}
+
+/* CHIPS */
+.chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.ch-red{background:var(--red-light);color:var(--red)}
+.ch-amber{background:var(--amber-light);color:var(--amber)}
+.ch-green{background:var(--green-light);color:var(--green)}
+.ch-blue{background:var(--sky-light);color:var(--blue)}
+.ch-gold{background:var(--gold-light);color:var(--gold)}
+
+/* FORM */
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:14px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.fc{padding:7px 11px;border:1px solid var(--border);border-radius:7px;background:var(--bg);color:var(--text);font-size:13px;outline:none;width:100%}
+.fc:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(33,150,243,.12)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:7px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;transition:all .12s}
+.btn-primary{background:var(--blue);color:#fff}.btn-primary:hover{background:var(--navy)}
+.btn-sm{padding:3px 9px;font-size:11px;border-radius:5px}
+.btn-success{background:var(--green);color:#fff}
+.btn-danger{background:var(--red);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}.btn-outline:hover{background:var(--bg)}
+
+/* CAJAS */
+.cajas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.caja-card{background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.caja-hd{background:var(--blue);color:#fff;padding:8px 13px;font-size:12px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.caja-body{padding:0}
+.caja-row{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:5px 13px;border-bottom:1px solid var(--border);font-size:11.5px}
+.caja-row:last-child{border-bottom:none}
+
+/* PROBLEM SEVERITY */
+.sev-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;flex-shrink:0}
+.sev-red{background:var(--red)}
+.sev-amber{background:var(--amber)}
+.sev-green{background:var(--green)}
+.sev-blue{background:var(--sky)}
+
+/* TANDA LINE */
+.tanda-line{display:flex;align-items:center;gap:8px;padding:10px 18px;background:var(--bg);border-top:1px solid var(--border);font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.tanda-dot{width:8px;height:8px;border-radius:50%}
+.t1{background:#2196F3}.t2{background:#4CAF50}.t3{background:#FF9800}.t4{background:#E91E63}
+
+/* SUMMARY ROW */
+.sum-row{display:flex;gap:18px;padding:10px 18px;border-top:1px solid var(--border);background:var(--bg);flex-wrap:wrap}
+.sum-item{font-size:12px;color:var(--muted)}
+.sum-item strong{color:var(--text)}
+
+/* RETIRO STATUS */
+.ret-devuelto{text-decoration:line-through;opacity:.6}
+
+/* HIDDEN */
+.hidden{display:none!important}
+
+/* SECTION TITLE */
+.sec-title{font-size:17px;font-weight:800;margin-bottom:4px}
+.sec-sub{font-size:12.5px;color:var(--muted);margin-bottom:18px}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo">
+    <div class="sb-badge">EDUTEC</div>
+    <h1>Godoy Cruz</h1>
+    <p>Sistema de Gestión de Equipos</p>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-sect">Principal</div>
+    <div class="nav-item active" onclick="showSection('resumen',this)">
+      <span class="nav-icon">📊</span> Resumen General
+    </div>
+    <div class="nav-item" onclick="showSection('escuelas',this)">
+      <span class="nav-icon">🏫</span> Inventario Escuelas
+      <span class="nb nb-blue" id="nb-escuelas">46</span>
+    </div>
+    <div class="sb-sect">Ubicaciones</div>
+    <div class="nav-item" onclick="showSection('educar',this)">
+      <span class="nav-icon">🏢</span> En EDUCAR
+      <span class="nb nb-gold" id="nb-educar">—</span>
+    </div>
+    <div class="nav-item" onclick="showSection('cdf',this)">
+      <span class="nav-icon">📦</span> Casa del Futuro
+      <span class="nb nb-blue">82</span>
+    </div>
+    <div class="sb-sect">Gestión</div>
+    <div class="nav-item" onclick="showSection('problemas',this)">
+      <span class="nav-icon">⚠️</span> Equipos con Problemas
+      <span class="nb nb-red" id="nb-prob">—</span>
+    </div>
+    <div class="nav-item" onclick="showSection('retiros',this)">
+      <span class="nav-icon">🔄</span> Retiros / Devoluciones
+    </div>
+  </nav>
+  <div class="sb-footer">
+    <button class="theme-btn" onclick="toggleTheme()">🌓 <span id="theme-label">Cambiar tema</span></button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <span class="page-title" id="topbar-title">Resumen General</span>
+    <div class="topbar-right">
+      <span class="date-chip" id="fecha-chip"></span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- ═══════════════ RESUMEN ═══════════════ -->
+    <div class="section active" id="section-resumen">
+      <div class="sec-title">Resumen General</div>
+      <div class="sec-sub">Estado del parque tecnológico EXO EDUTEC — Godoy Cruz</div>
+
+      <div class="kpi-grid">
+        <div class="kpi blue">
+          <div class="kpi-label">Total Computadoras</div>
+          <div class="kpi-val">1.794</div>
+          <div class="kpi-sub">Distribuidas + depósito</div>
+        </div>
+        <div class="kpi green">
+          <div class="kpi-label">En Escuelas</div>
+          <div class="kpi-val">1.474</div>
+          <div class="kpi-sub">46 establecimientos</div>
+        </div>
+        <div class="kpi gold">
+          <div class="kpi-label">En EDUCAR</div>
+          <div class="kpi-val" id="kpi-educar">—</div>
+          <div class="kpi-sub">Esperando reparación</div>
+        </div>
+        <div class="kpi amber">
+          <div class="kpi-label">Casa del Futuro</div>
+          <div class="kpi-val">82</div>
+          <div class="kpi-sub">48 bat. + 23 sin garantía + 11 rep.</div>
+        </div>
+        <div class="kpi red">
+          <div class="kpi-label">Con Problemas</div>
+          <div class="kpi-val" id="kpi-prob">—</div>
+          <div class="kpi-sub">Otros Problemas registrados</div>
+        </div>
+        <div class="kpi blue">
+          <div class="kpi-label">Depósito</div>
+          <div class="kpi-val">305</div>
+          <div class="kpi-sub">Sin asignar / Cajas</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <!-- Distribución por tanda -->
+        <div class="card">
+          <div class="card-hd"><span class="card-title">Distribución por Tanda</span></div>
+          <div class="card-body" style="padding:12px 18px">
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+                  <span><span class="sev-dot t1"></span>1° Tanda (Rawson, Mendoza, D. Santa)</span>
+                  <strong>160</strong>
+                </div>
+                <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:8.9%;background:var(--sky);border-radius:3px"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+                  <span><span class="sev-dot t2"></span>2° Tanda (Cobos, S. Francisco, etc.)</span>
+                  <strong>217</strong>
+                </div>
+                <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:12.1%;background:#4CAF50;border-radius:3px"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+                  <span><span class="sev-dot t3"></span>3° Tanda (Caseros, Da Vinci, etc.)</span>
+                  <strong>908</strong>
+                </div>
+                <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:50.6%;background:#FF9800;border-radius:3px"></div></div>
+              </div>
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:4px">
+                  <span><span class="sev-dot t4"></span>4° Tanda (Batalla, Agustín, Fray, etc.)</span>
+                  <strong>189</strong>
+                </div>
+                <div style="height:6px;background:var(--border);border-radius:3px"><div style="height:100%;width:10.5%;background:#E91E63;border-radius:3px"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Problemas en CDF -->
+        <div class="card">
+          <div class="card-hd"><span class="card-title">Casa del Futuro — Diagnóstico</span></div>
+          <div class="card-body" style="padding:12px 18px">
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="display:flex;align-items:center;gap:8px;font-size:12.5px">
+                  <span class="chip ch-red">Batería Hinchada</span></span>
+                <strong style="font-variant-numeric:tabular-nums">48</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="display:flex;align-items:center;gap:8px;font-size:12.5px">
+                  <span class="chip ch-amber">Fuera de Garantía</span></span>
+                <strong style="font-variant-numeric:tabular-nums">23</strong>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="display:flex;align-items:center;gap:8px;font-size:12.5px">
+                  <span class="chip ch-green">Reparadas</span></span>
+                <strong style="font-variant-numeric:tabular-nums">11</strong>
+              </div>
+              <div style="border-top:1px solid var(--border);padding-top:10px;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:12.5px;font-weight:700">Total en CDF</span>
+                <strong style="font-variant-numeric:tabular-nums;font-size:16px">82</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top escuelas -->
+      <div class="card">
+        <div class="card-hd"><span class="card-title">Escuelas con más equipos</span></div>
+        <div class="tw">
+          <table id="top-escuelas-tbl">
+            <thead><tr>
+              <th>Escuela</th><th>N°</th><th>Tanda</th><th>Notebooks</th><th>Proporción</th>
+            </tr></thead>
+            <tbody id="top-escuelas-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ ESCUELAS ═══════════════ -->
+    <div class="section" id="section-escuelas">
+      <div class="sec-title">Inventario por Escuela</div>
+      <div class="sec-sub">46 establecimientos — netbooks alumnos + accesorios por escuela</div>
+
+      <div class="search-row">
+        <input class="s-input" type="text" placeholder="Buscar escuela, número o dirección..." id="esc-search" oninput="filterEscuelas()">
+        <select class="s-sel" id="esc-tanda" onchange="filterEscuelas()">
+          <option value="">Todas las tandas</option>
+          <option value="1">1° Tanda</option>
+          <option value="2">2° Tanda</option>
+          <option value="3">3° Tanda</option>
+          <option value="4">4° Tanda</option>
+        </select>
+        <select class="s-sel" id="esc-sort" onchange="filterEscuelas()">
+          <option value="notebooks-desc">Mayor cantidad</option>
+          <option value="notebooks-asc">Menor cantidad</option>
+          <option value="nombre">Nombre A–Z</option>
+          <option value="numero">N° Escuela</option>
+        </select>
+      </div>
+
+      <div class="card">
+        <div class="tw">
+          <table>
+            <thead><tr>
+              <th>N° Escuela</th>
+              <th>Nombre</th>
+              <th>Tanda</th>
+              <th>Net. Alumnos</th>
+              <th>Note Doc.</th>
+              <th>Proyector</th>
+              <th>Ebeam</th>
+              <th>AP</th>
+              <th>Gabinete</th>
+              <th>Proporción</th>
+            </tr></thead>
+            <tbody id="escuelas-body"></tbody>
+          </table>
+        </div>
+        <div class="sum-row">
+          <div class="sum-item"><strong id="esc-count">46</strong> escuelas</div>
+          <div class="sum-item">Total notebooks: <strong id="esc-total">1.474</strong></div>
+          <div class="sum-item"><span class="sev-dot t1"></span>1°T: <strong>160</strong></div>
+          <div class="sum-item"><span class="sev-dot t2"></span>2°T: <strong>217</strong></div>
+          <div class="sum-item"><span class="sev-dot t3"></span>3°T: <strong>908</strong></div>
+          <div class="sum-item"><span class="sev-dot t4"></span>4°T: <strong>189</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ EN EDUCAR ═══════════════ -->
+    <div class="section" id="section-educar">
+      <div class="sec-title">Computadoras en EDUCAR</div>
+      <div class="sec-sub">Equipos actualmente en el centro esperando diagnóstico o reparación</div>
+
+      <div class="search-row">
+        <input class="s-input" type="text" placeholder="Buscar por escuela, ID o problema..." id="edu-search" oninput="filterEducar()">
+        <select class="s-sel" id="edu-prob" onchange="filterEducar()">
+          <option value="">Todos los problemas</option>
+          <option value="NO ENCIENDE">No Enciende</option>
+          <option value="PAD">PAD</option>
+          <option value="PANTALLA">Pantalla</option>
+          <option value="BATERIA">Batería</option>
+          <option value="LISTA">Lista / OK</option>
+          <option value="DISCO">Disco / SSD</option>
+        </select>
+      </div>
+
+      <div class="card">
+        <div class="tw">
+          <table>
+            <thead><tr>
+              <th>Escuela</th>
+              <th>N° Esc.</th>
+              <th>ID (Cód. GC)</th>
+              <th>Problema</th>
+              <th>Entrega Escuela</th>
+            </tr></thead>
+            <tbody id="educar-body"></tbody>
+          </table>
+        </div>
+        <div class="sum-row">
+          <div class="sum-item">Mostrando: <strong id="edu-count">—</strong> equipos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CASA DEL FUTURO ═══════════════ -->
+    <div class="section" id="section-cdf">
+      <div class="sec-title">Casa del Futuro (CDF)</div>
+      <div class="sec-sub">82 equipos totales — cajas en depósito + equipos con problemas enviados para revisión</div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
+        <div class="kpi amber"><div class="kpi-label">Batería Hinchada</div><div class="kpi-val">48</div></div>
+        <div class="kpi red"><div class="kpi-label">Fuera de Garantía</div><div class="kpi-val">23</div></div>
+        <div class="kpi green"><div class="kpi-label">Reparadas</div><div class="kpi-val">11</div></div>
+      </div>
+
+      <!-- Equipos con bateria hinchada en CDF -->
+      <div class="card">
+        <div class="card-hd">
+          <span class="card-title">⚠️ Batería Hinchada — En Casa del Futuro</span>
+          <span class="chip ch-amber">48 equipos</span>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Escuela</th><th>N° Esc.</th><th>ID (Cód. GC)</th><th>N° de Serie</th><th>Modelo</th><th>Estado CDF</th></tr></thead>
+            <tbody id="bateria-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Fuera de garantia -->
+      <div class="card">
+        <div class="card-hd">
+          <span class="card-title">🔴 Fuera de Garantía — En Casa del Futuro</span>
+          <span class="chip ch-red">23 equipos</span>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Escuela</th><th>N° Esc.</th><th>ID (Cód. GC)</th><th>N° de Serie</th><th>Problema</th><th>Modelo</th></tr></thead>
+            <tbody id="fuera-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Cajas depósito -->
+      <div class="card">
+        <div class="card-hd">
+          <span class="card-title">📦 Cajas en Depósito — EducarLab</span>
+          <span class="chip ch-blue">13 cajas</span>
+        </div>
+        <div class="card-body">
+          <div class="cajas-grid" id="cajas-grid"></div>
+        </div>
+      </div>
+
+      <!-- Equipos en EDUCAR (de Sin Garantia sheet) -->
+      <div class="card">
+        <div class="card-hd">
+          <span class="card-title">🏢 Trasladados de CDF → EDUCAR (Castillo)</span>
+          <span class="chip ch-gold">5 equipos</span>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr><th>Escuela</th><th>N° Esc.</th><th>ID (Cód. GC)</th><th>N° de Serie</th><th>Problema</th><th>Modelo</th></tr></thead>
+            <tbody>
+              <tr><td>Dr. Severo Guitierrez del Castillo</td><td class="mono">1-544</td><td class="mono">7061-282</td><td class="mono">1261069B00048</td><td><span class="chip ch-amber">Batería Hinchada</span></td><td>5482 NETB NP360V2-S3141</td></tr>
+              <tr><td>Dr. Severo Guitierrez del Castillo</td><td class="mono">1-544</td><td class="mono">7061-395</td><td class="mono">1260896B00027</td><td><span class="chip ch-amber">Batería Hinchada</span></td><td>5482 NETB NP360V2-S3141</td></tr>
+              <tr><td>Dr. Severo Guitierrez del Castillo</td><td class="mono">1-544</td><td class="mono">7061-286</td><td class="mono">1261069B00087</td><td><span class="chip ch-amber">Batería Hinchada</span></td><td>5482 NETB NP360V2-S3141</td></tr>
+              <tr><td>Dr. Severo Guitierrez del Castillo</td><td class="mono">1-544</td><td class="mono">7061-288</td><td class="mono">1261069B00056</td><td><span class="chip ch-amber">Batería Hinchada</span></td><td>5482 NETB NP360V2-S3141</td></tr>
+              <tr><td>Dr. Severo Guitierrez del Castillo</td><td class="mono">1-544</td><td class="mono">7061-283</td><td class="mono">1261069B00024</td><td><span class="chip ch-amber">Batería Hinchada</span></td><td>5482 NETB NP360V2-S3141</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ PROBLEMAS ═══════════════ -->
+    <div class="section" id="section-problemas">
+      <div class="sec-title">Equipos con Problemas</div>
+      <div class="sec-sub">Registro de equipos sin garantía con fallas — Otros Problemas + Batería Hinchada</div>
+
+      <div class="search-row">
+        <input class="s-input" type="text" placeholder="Buscar escuela, ID, serie o problema..." id="prob-search" oninput="filterProblemas()">
+        <select class="s-sel" id="prob-tipo" onchange="filterProblemas()">
+          <option value="">Todos los tipos</option>
+          <option value="bateria">Batería Hinchada</option>
+          <option value="pad">PAD / Pantalla táctil</option>
+          <option value="enciende">No Enciende / Arranca</option>
+          <option value="disco">Disco / SSD</option>
+          <option value="pantalla">Pantalla</option>
+          <option value="wifi">WiFi</option>
+          <option value="otro">Otro</option>
+        </select>
+        <select class="s-sel" id="prob-ver" onchange="filterProblemas()">
+          <option value="">Verificados + No Verif.</option>
+          <option value="true">Verificados</option>
+          <option value="false">No verificados</option>
+        </select>
+      </div>
+
+      <div class="card">
+        <div class="tw">
+          <table>
+            <thead><tr>
+              <th>Fecha</th>
+              <th>Escuela</th>
+              <th>N° Esc.</th>
+              <th>ID (Cód. GC)</th>
+              <th>N° de Serie</th>
+              <th>Problema</th>
+              <th>Modelo</th>
+              <th>Verif.</th>
+            </tr></thead>
+            <tbody id="problemas-body"></tbody>
+          </table>
+        </div>
+        <div class="sum-row">
+          <div class="sum-item">Mostrando: <strong id="prob-count">—</strong> registros</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ RETIROS ═══════════════ -->
+    <div class="section" id="section-retiros">
+      <div class="sec-title">Retiros y Devoluciones</div>
+      <div class="sec-sub">Registro de equipos que salen de EDUCAR hacia las escuelas — guardado localmente</div>
+
+      <div class="card" style="margin-bottom:18px">
+        <div class="card-hd"><span class="card-title">➕ Registrar Retiro / Salida</span></div>
+        <div class="card-body">
+          <div class="form-grid">
+            <div class="fg">
+              <label>Fecha de Retiro</label>
+              <input class="fc" type="date" id="ret-fecha">
+            </div>
+            <div class="fg">
+              <label>Escuela Destino</label>
+              <select class="fc" id="ret-escuela">
+                <option value="">— Seleccionar —</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>ID / Cód. Godoy Cruz</label>
+              <input class="fc mono" type="text" id="ret-id" placeholder="ej. 7061-523">
+            </div>
+            <div class="fg">
+              <label>N° de Serie</label>
+              <input class="fc mono" type="text" id="ret-serie" placeholder="ej. 1306810D00016">
+            </div>
+            <div class="fg">
+              <label>Tipo de Equipo</label>
+              <select class="fc" id="ret-tipo">
+                <option value="Notebook Alumno">Notebook Alumno</option>
+                <option value="Notebook Docente">Notebook Docente</option>
+                <option value="Proyector">Proyector</option>
+                <option value="Ebeam">Ebeam</option>
+                <option value="Access Point">Access Point</option>
+                <option value="Gabinete">Gabinete</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label>Responsable</label>
+              <input class="fc" type="text" id="ret-resp" placeholder="Nombre completo">
+            </div>
+          </div>
+          <div class="fg" style="margin-bottom:14px">
+            <label>Observaciones</label>
+            <input class="fc" type="text" id="ret-obs" placeholder="Estado del equipo, motivo del retiro...">
+          </div>
+          <button class="btn btn-primary" onclick="addRetiro()">📋 Registrar Retiro</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-hd">
+          <span class="card-title">Historial de Retiros</span>
+          <div style="display:flex;gap:8px;margin-left:auto">
+            <input class="s-input" style="width:220px" type="text" placeholder="Buscar..." id="ret-search" oninput="filterRetiros()">
+            <select class="s-sel" id="ret-status-filter" onchange="filterRetiros()">
+              <option value="">Todos</option>
+              <option value="activo">Activos (no devueltos)</option>
+              <option value="devuelto">Devueltos</option>
+            </select>
+          </div>
+        </div>
+        <div class="tw">
+          <table>
+            <thead><tr>
+              <th>Fecha</th>
+              <th>Escuela</th>
+              <th>ID / Cód. GC</th>
+              <th>N° de Serie</th>
+              <th>Tipo</th>
+              <th>Responsable</th>
+              <th>Observaciones</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr></thead>
+            <tbody id="retiros-body"></tbody>
+          </table>
+        </div>
+        <div class="sum-row" id="retiros-sum">
+          <div class="sum-item">Sin retiros registrados aún</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────
+const ESCUELAS = [
+  {id:"1-004",nombre:"Dr. Guillermo Rawson",notebooks:80,docente:2,proy:2,ebeam:2,ap:2,gab:2,tanda:1,dir:"Godoy Cruz"},
+  {id:"1-672",nombre:"Renato Della Santa",notebooks:40,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:1,dir:"Godoy Cruz"},
+  {id:"1-698",nombre:"Provincia de Mendoza",notebooks:39,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:1,dir:"Godoy Cruz"},
+  {id:"1-337",nombre:"Juan Francisco Cobos",notebooks:32,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:2,dir:"Godoy Cruz"},
+  {id:"1-585",nombre:"1° de Febrero",notebooks:26,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:2,dir:"Godoy Cruz"},
+  {id:"1-675",nombre:"San Francisco de Asís",notebooks:46,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:2,dir:"Godoy Cruz"},
+  {id:"1-544",nombre:"Dr. Severo G. del Castillo",notebooks:33,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:2,dir:"Godoy Cruz"},
+  {id:"1-580",nombre:"Carlos Padín",notebooks:19,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:2,dir:"Godoy Cruz"},
+  {id:"1-072",nombre:"Roque Saenz Peña",notebooks:45,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:2,dir:"Godoy Cruz"},
+  {id:"1-419",nombre:"Emaus",notebooks:16,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:2,dir:"Godoy Cruz"},
+  {id:"1-078",nombre:"Santiago del Estero",notebooks:15,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-109",nombre:"Juan Martínez de Rosas",notebooks:57,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-674",nombre:"Gerónimo Sosa",notebooks:23,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-075",nombre:"Cordillera de los Andes",notebooks:34,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-714",nombre:"Ciudad de Brasilia",notebooks:33,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-077",nombre:"Provincia de Buenos Aires",notebooks:19,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-579",nombre:"Petroleros Argentinos",notebooks:23,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-408",nombre:"República del Perú",notebooks:42,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-629",nombre:"Pellegrini",notebooks:23,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-108",nombre:"Dr. Julio Lemos",notebooks:27,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-640",nombre:"Reyes Católicos",notebooks:48,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-550",nombre:"Fragata Sarmiento",notebooks:27,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-191",nombre:"Leónidas de Aguirre",notebooks:10,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-628",nombre:"Leonardo Da Vinci",notebooks:15,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-139",nombre:"Caseros",notebooks:26,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-220",nombre:"Misiones",notebooks:29,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-485",nombre:"Avelino Maure",notebooks:57,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-617",nombre:"San Gabriel",notebooks:40,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-712",nombre:"Jesús de Nazaret",notebooks:34,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-623",nombre:"Manuel Pacífico Antequeda",notebooks:27,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Derqui 902"},
+  {id:"1-116",nombre:"Dr. Tomás Godoy Cruz",notebooks:35,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-620",nombre:"Pedro Regalado de la Plaza",notebooks:32,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-630",nombre:"Fernando Fader",notebooks:24,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-641",nombre:"Juan de Coria Bohórquez",notebooks:30,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-016",nombre:"Burgoa",notebooks:23,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-669",nombre:"Mazziotti",notebooks:28,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-622",nombre:"Padre Pedro Arce",notebooks:32,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Velez Sarfield S/N"},
+  {id:"1-658",nombre:"Tropero Sosa",notebooks:10,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-691",nombre:"Scalabrini Ortiz",notebooks:19,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-688",nombre:"Cerro Aconcagua",notebooks:24,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-356",nombre:"Victoriano Montes",notebooks:41,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:3,dir:"Godoy Cruz"},
+  {id:"1-552",nombre:"Bandera Argentina",notebooks:19,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:4,dir:"Godoy Cruz"},
+  {id:"1-666",nombre:"Batalla del Pilar",notebooks:49,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:4,dir:"Godoy Cruz"},
+  {id:"1-456",nombre:"Agustín Álvarez",notebooks:45,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:4,dir:"Godoy Cruz"},
+  {id:"1-624",nombre:"Fray Luis Beltrán",notebooks:51,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:4,dir:"Godoy Cruz"},
+  {id:"1-635",nombre:"Coromina Segura",notebooks:25,docente:1,proy:1,ebeam:1,ap:1,gab:1,tanda:4,dir:"Godoy Cruz"},
+];
+
+const EDUCAR_DATA = [
+  {escuela:"PROVINCIA DE BS AS",nro:"1-077",id:"7061-759",problema:"MOUSE Y PAD",entrega:"2026-07-15"},
+  {escuela:"BATALLA DEL PILAR",nro:"1-666",id:"7061-609",problema:"—",entrega:""},
+  {escuela:"CERRO ACONCAGUA",nro:"1-688",id:"7061-870",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"CERRO ACONCAGUA",nro:"1-688",id:"7061-856",problema:"NO CARGA EL ESCRITORIO",entrega:""},
+  {escuela:"CORDILLERA DE LOS ANDES",nro:"1-075",id:"2832-124",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"CORDILLERA DE LOS ANDES",nro:"1-075",id:"2832-130",problema:"PANTALLA BLANCA",entrega:""},
+  {escuela:"CORDILLERA DE LOS ANDES",nro:"1-075",id:"2832-111",problema:"PANTALLA NEGRA O BLANCA",entrega:""},
+  {escuela:"CORDILLERA DE LOS ANDES",nro:"1-075",id:"2832-121",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"CORDILLERA DE LOS ANDES",nro:"1-075",id:"2832-149",problema:"PANTALLA NEGRA O BLANCA",entrega:""},
+  {escuela:"CORDILLERA DE LOS ANDES",nro:"1-075",id:"2832-122",problema:"PROBLEMA DE INICIO",entrega:""},
+  {escuela:"CORDILLERA DE LOS ANDES",nro:"1-075",id:"2832-100",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"TROPERO SOSA",nro:"1-658",id:"7061-743",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"TROPERO SOSA",nro:"1-658",id:"7061-738",problema:"LISTA",entrega:""},
+  {escuela:"TROPERO SOSA",nro:"1-658",id:"7061-729",problema:"LISTA",entrega:""},
+  {escuela:"FRAGATA SARMIENTO",nro:"1-550",id:"7061-422",problema:"NO FUNCIONA",entrega:""},
+  {escuela:"FRAGATA SARMIENTO",nro:"1-550",id:"7061-423",problema:"BIOS",entrega:""},
+  {escuela:"DR JULIO LEMOS",nro:"1-108",id:"7061-1327",problema:"FALLA SISTEMA",entrega:""},
+  {escuela:"DR JULIO LEMOS",nro:"1-108",id:"7061-1325",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"SAN GABRIEL",nro:"1-617",id:"2832-138",problema:"NO FUNCIONA AUDIO",entrega:""},
+  {escuela:"SAN GABRIEL",nro:"1-617",id:"2832-155",problema:"NO SE DETECTO PROBLEMA",entrega:""},
+  {escuela:"SAN GABRIEL",nro:"1-617",id:"2832-144",problema:"NO SE DETECTO PROBLEMA",entrega:""},
+  {escuela:"SAN GABRIEL",nro:"1-617",id:"2832-139",problema:"PROBLEMA DE BATERIA",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1195",problema:"PAD",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1170",problema:"PAD",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1185",problema:"PAD",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1171",problema:"PROBLEMA ENCENDER",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1189",problema:"PAD",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1176",problema:"PAD",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1174",problema:"PAD",entrega:""},
+  {escuela:"CIUDAD DE BRASILIA",nro:"1-714",id:"7061-1182",problema:"PAD",entrega:""},
+  {escuela:"MANUEL P ANTEQUEDA",nro:"1-623",id:"7061-1259",problema:"PAD",entrega:"2026-08-07"},
+  {escuela:"MANUEL P ANTEQUEDA",nro:"1-623",id:"7061-1253",problema:"NO ARRANCA",entrega:"2026-08-07"},
+  {escuela:"MANUEL P ANTEQUEDA",nro:"1-623",id:"7061-1247",problema:"PAD",entrega:"2026-08-07"},
+  {escuela:"FRAY LUIS BELTRAN",nro:"1-624",id:"7061-593",problema:"LISTA",entrega:""},
+  {escuela:"FRAY LUIS BELTRAN",nro:"1-624",id:"2832-345",problema:"DISCO",entrega:""},
+  {escuela:"PETROLEROS ARGENTINOS",nro:"1-579",id:"7061-1306",problema:"NO ARRANCA SISTEMA",entrega:""},
+  {escuela:"PETROLEROS ARGENTINOS",nro:"1-579",id:"7061-1297",problema:"NO ARRANCA SISTEMA",entrega:""},
+  {escuela:"PETROLEROS ARGENTINOS",nro:"1-579",id:"7061-1347",problema:"NO ARRANCA SISTEMA",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-969",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-954",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-955",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-961",problema:"FUNCIONA SOLO ENCHUFADA",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-952",problema:"PANTALLA BLANCA",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-963",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-953",problema:"NO TIENE SSD",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-964",problema:"ENCIENDE ENCHUFADA",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-951",problema:"PAD/WIN",entrega:""},
+  {escuela:"CASEROS",nro:"1-139",id:"7061-959",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1225",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1131",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1216",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1130",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1224",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1223",problema:"NO FUNCIONA",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1135",problema:"NO FUNCIONA",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1218",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1227",problema:"NO FUNCIONA",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1118",problema:"NO FUNCIONA",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1203",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1215",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"REYES CATOLICOS",nro:"1-640",id:"7061-1232",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-741",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-735",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-736",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-722",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-723",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-749",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-728",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"LEONARDO DA VINCI",nro:"1-628",id:"7061-747",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-627",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-788",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-661",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-732",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-663",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-726",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-727",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-632",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-625",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-652",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-731",problema:"NO TIENE BATERIA",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-664",problema:"LISTA",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-674",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-656",problema:"PROBLEMA BAT",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-633",problema:"PROBLEMA BAT",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-640",problema:"LISTO",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-634",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"JUAN MARTINEZ DE ROSAS",nro:"1-109",id:"7061-635",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-479",problema:"—",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-1018",problema:"SIN BATERIA",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-489",problema:"SIN BATERIA",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-480",problema:"PANTALLA NEGRA",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-471",problema:"BATERIA PAD",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-1244",problema:"NO ENCIENDE",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-036",problema:"PAD",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-491",problema:"PAD",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-1011",problema:"PAD",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-1019",problema:"PAD",entrega:""},
+  {escuela:"AVELINO MAURE",nro:"1-485",id:"7061-492",problema:"PAD",entrega:""},
+];
+
+const BATERIA_CDF = [
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-354",serie:"1260896B00047",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-325",serie:"1260896B00072",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-370",serie:"1260896B00089",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-342",serie:"1260896B00052",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-327",serie:"1260896B00095",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-348",serie:"1260896B00073",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-391",serie:"1260896B00074",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-344",serie:"1260896B00029",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-323",serie:"1260896B00057",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Roque Saenz Peña",nro:"1-072",id:"7061-373",serie:"1260896B00053",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-153",serie:"1225927B00021",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-121",serie:"1225927B00024",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-134",serie:"1225927B00036",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-146",serie:"1225927B00087",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-127",serie:"1225927B00066",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-142",serie:"1225927B00039",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-129",serie:"1225927B00054",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-141",serie:"1225927B00037",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-156",serie:"1225927B00047",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-128",serie:"1225927B00094",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"San Francisco de Asís",nro:"1-675",id:"7061-37",serie:"1225927B00041",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"San Francisco de Asís",nro:"1-675",id:"7061-23",serie:"1225927B00114",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"San Francisco de Asís",nro:"1-675",id:"7061-22",serie:"1225927B00111",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"San Francisco de Asís",nro:"1-675",id:"7061-24",serie:"1225927B00113",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Dr. Severo G. del Castillo",nro:"1-544",id:"7061-285",serie:"1261069B00040",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Dr. Severo G. del Castillo",nro:"1-544",id:"7061-279",serie:"1261069B00019",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Dr. Severo G. del Castillo",nro:"1-544",id:"7061-289",serie:"1261069B00005",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Dr. Severo G. del Castillo",nro:"1-544",id:"7061-266",serie:"1261069B00047",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Dr. Severo G. del Castillo",nro:"1-544",id:"7061-276",serie:"1261069B00010",modelo:"5482 NETB NP360V2-S3141",estado:"SI"},
+  {escuela:"Juan Francisco Cobos",nro:"1-337",id:"7061-320",serie:"1260896b00015",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Juan Francisco Cobos",nro:"1-337",id:"7061-306",serie:"1260896B00033",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Juan Francisco Cobos",nro:"1-337",id:"7061-309",serie:"1260896b00075",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Juan Francisco Cobos",nro:"1-337",id:"7061-313",serie:"1260896b00058",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Juan Francisco Cobos",nro:"1-337",id:"7061-291",serie:"1260896b00001",modelo:"5482 NETB NP360v2-S3141",estado:"SI"},
+  {escuela:"Renato Della Santa",nro:"1-672",id:"7061-168",serie:"1225927B00076",modelo:"5482 NETBK NP360V2-S3141",estado:"SI"},
+  {escuela:"Renato Della Santa",nro:"1-672",id:"7061-171",serie:"1225927B00098",modelo:"5482 NETBK NP360V2-S3141",estado:"SI"},
+  {escuela:"Renato Della Santa",nro:"1-672",id:"7061-170",serie:"1225927B00118",modelo:"5482 NETBK NP360V2-S3141",estado:"SI"},
+  {escuela:"Emaus",nro:"1-419",id:"7061-220",serie:"1261069B00070",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"Emaus",nro:"1-419",id:"7061-218",serie:"1261069B00091",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"Emaus",nro:"1-419",id:"7061-357",serie:"1261069B00030",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"Emaus",nro:"1-419",id:"7061-222",serie:"1261069B00084",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"Renato Della Santa",nro:"1-672",id:"7061-167",serie:"1225927B00127",modelo:"5482 NETBK NP360V2-S3141",estado:"Reparada"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-159",serie:"1225927B00028",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-138",serie:"1225927B00025",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"San Francisco de Asís",nro:"1-675",id:"7061-15",serie:"1225927B00175",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"Dr. Severo G. del Castillo",nro:"1-544",id:"7061-277",serie:"1261069B00003",modelo:"5482 NETB NP360V2-S3141",estado:"Reparada"},
+  {escuela:"Emaus",nro:"1-419",id:"7061-362",serie:"1261069B00023",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+  {escuela:"Provincia de Mendoza",nro:"1-698",id:"7061-145",serie:"1225927B00088",modelo:"5482 NETB NP360v2-S3141",estado:"Reparada"},
+];
+
+const FUERA_GARANTIA = [
+  {escuela:"Misiones",nro:"1-220",id:"2832-293",serie:"1299071A00001",problema:"Wifi",modelo:"2927 NBOOK Exo SMART ADE"},
+  {escuela:"EducarLab (Docente)",nro:"—",id:"2832-288",serie:"1299071A00003",problema:"Queda en logo EXO, no le andan los puertos",modelo:"2927 NBOOK EXO SMART ADE"},
+  {escuela:"San Francisco de Asís",nro:"1-675",id:"2832-07",serie:"1225927A00003",problema:"Mini HDMI no funciona",modelo:"2927 NB SMART ADE PROVX"},
+  {escuela:"Coromina Segura",nro:"1-635",id:"2832-307",serie:"1306810A00001",problema:"Parpadeo en la pantalla",modelo:"2927 NB EXO ADE PROVX"},
+  {escuela:"Carlos Padín",nro:"1-580",id:"7061-205",serie:"1260896B00093",problema:"No prende, No carga",modelo:"5482 NETB NP360V2-S3141"},
+  {escuela:"Carlos Padín",nro:"1-580",id:"7061-213",serie:"1260896B00076",problema:"Disco",modelo:"5482 NETB NP360V2-S3141"},
+  {escuela:"Cordillera de los Andes",nro:"1-075",id:"2832-107",serie:"1303176D00031",problema:"PAD, no enciende, pantalla negra",modelo:"2886 NET EXO MAT X5-S1441"},
+  {escuela:"Cordillera de los Andes",nro:"1-075",id:"2832-097",serie:"1303176D00059",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441"},
+  {escuela:"Cordillera de los Andes",nro:"1-075",id:"2832-117",serie:"1303176D00024",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441"},
+  {escuela:"Cordillera de los Andes",nro:"1-075",id:"2832-104",serie:"1303176D00010",problema:"PAD, pantalla blanca o negra",modelo:"2886 NET EXO MAT X5-S1441"},
+  {escuela:"Misiones",nro:"1-220",id:"2832-252",serie:"1299071D00007",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P"},
+  {escuela:"Burgoa",nro:"1-016",id:"2832-258",serie:"1299071D00111",problema:"Disco",modelo:"2886 NET X5-S1441P"},
+  {escuela:"Cordillera de los Andes",nro:"1-075",id:"2832-146",serie:"1299071D00014",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441"},
+  {escuela:"Avelino Maure",nro:"1-485",id:"7061-1243",serie:"1306810D00183",problema:"No Enciende",modelo:"2886 NET X5-S1441P"},
+  {escuela:"Manuel Pacífico Antequeda",nro:"1-623",id:"7061-1238",serie:"1306810D00203",problema:"No arranca",modelo:"2886 NET EXO MAT X5-S1441"},
+  {escuela:"Misiones",nro:"1-220",id:"2832-247",serie:"1299071D00029",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P"},
+  {escuela:"Fragata Sarmiento",nro:"1-550",id:"7061-408",serie:"1310194D00112",problema:"Disco, Wifi",modelo:"2886 NET X5-S1441P"},
+  {escuela:"Misiones",nro:"1-220",id:"2832-231",serie:"1299071D00083",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P"},
+  {escuela:"Misiones",nro:"1-220",id:"2832-229",serie:"1299071D00031",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P"},
+  {escuela:"Misiones",nro:"1-220",id:"2832-250",serie:"1299071D00147",problema:"No prende, pantalla blanca",modelo:"2886 Exo Mate X5-S1441P"},
+  {escuela:"Burgoa",nro:"1-016",id:"2832-275",serie:"1299071D00004",problema:"No funciona teclado, no carga",modelo:"2886 NET X5-S1441P"},
+  {escuela:"Juan Coria Bohórquez",nro:"1-641",id:"7061-437",serie:"1310194D00066",problema:"Pantalla Blanca",modelo:"2886 NET EXO MAT X5-S1441"},
+];
+
+const PROBLEMAS_DATA = [
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-231",serie:"1299071D00083",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P",ver:false},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-241",serie:"1299071D00011",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P",ver:true},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-240",serie:"1299071D00016",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P",ver:true},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-229",serie:"1299071D00031",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P",ver:false},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-237",serie:"1299071D00051",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P",ver:true},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-252",serie:"1299071D00007",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P",ver:false},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-247",serie:"1299071D00029",problema:"No prende",modelo:"2886 Exo Mate X5-S1441P",ver:false},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-250",serie:"1299071D00147",problema:"No prende, pantalla blanca",modelo:"2886 Exo Mate X5-S1441P",ver:false},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-232",serie:"1299071D00090",problema:"No prende, Disco",modelo:"2886 Exo Mate X5-S1441P",ver:true},
+  {fecha:"2025-03-18",escuela:"Misiones",nro:"1-220",id:"2832-293",serie:"1299071A00001",problema:"Wifi",modelo:"2927 NBOOK Exo SMART ADE",ver:false},
+  {fecha:"2025-03-21",escuela:"San Francisco de Asís",nro:"1-675",id:"2832-07",serie:"1225927A00003",problema:"Mini HDMI no funciona",modelo:"2927 NB SMART ADE PROVX",ver:false},
+  {fecha:"2025-08-19",escuela:"Carlos Padín",nro:"1-580",id:"7061-211",serie:"1260896B00085",problema:"Disco",modelo:"5482 NETB NP360V2-S3141",ver:true},
+  {fecha:"2025-08-19",escuela:"Carlos Padín",nro:"1-580",id:"7061-205",serie:"1260896B00093",problema:"No prende, No carga",modelo:"5482 NETB NP360V2-S3141",ver:false},
+  {fecha:"2025-08-19",escuela:"Carlos Padín",nro:"1-580",id:"7061-213",serie:"1260896B00076",problema:"Disco",modelo:"5482 NETB NP360V2-S3141",ver:false},
+  {fecha:"2024-09-03",escuela:"Burgoa",nro:"1-016",id:"2832-275",serie:"1299071D00004",problema:"No funciona teclado, no carga",modelo:"2886 NET X5-S1441P",ver:false},
+  {fecha:"2024-09-10",escuela:"Burgoa",nro:"1-016",id:"2832-258",serie:"1299071D00111",problema:"Disco",modelo:"2886 NET X5-S1441P",ver:false},
+  {fecha:"2025-03-19",escuela:"Avelino Maure",nro:"1-485",id:"7061-1244",serie:"1306810D00188",problema:"No Enciende",modelo:"2886 NET X5-S1441P",ver:true},
+  {fecha:"2025-03-19",escuela:"Avelino Maure",nro:"1-485",id:"7061-1243",serie:"1306810D00183",problema:"No Enciende",modelo:"2886 NET X5-S1441P",ver:false},
+  {fecha:"2025-03-19",escuela:"Avelino Maure",nro:"1-485",id:"qq",serie:"1304640D00246",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:true},
+  {fecha:"2025-03-19",escuela:"Avelino Maure",nro:"1-485",id:"7061-1014",serie:"1304640D00205",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:true},
+  {fecha:"2025-02-25",escuela:"Fragata Sarmiento",nro:"1-550",id:"7061-408",serie:"1310194D00112",problema:"Disco, Wifi",modelo:"2886 NET X5-S1441P",ver:false},
+  {fecha:"2025-02-25",escuela:"Fragata Sarmiento",nro:"1-550",id:"7061-414",serie:"1310194D00045",problema:"PAD",modelo:"2886 NET X5-S1441P",ver:true},
+  {fecha:"2025-03-26",escuela:"Fray Luis Beltrán",nro:"1-624",id:"2832-371",serie:"1310723A00001",problema:"No carga al 100%",modelo:"2927 NB ADE PROVX",ver:false},
+  {fecha:"2025-03-26",escuela:"EducarLab (Docente)",nro:"—",id:"2832-288",serie:"1299071A00003",problema:"Queda en logo EXO, no le andan los puertos",modelo:"2927 NBOOK EXO SMART ADE",ver:false},
+  {fecha:"2025-03-26",escuela:"Manuel P. Antequeda",nro:"1-623",id:"7061-1253",serie:"1306810D00246",problema:"No arranca",modelo:"2886 NET EXO MAT X5-S1441",ver:true},
+  {fecha:"2025-03-26",escuela:"Manuel P. Antequeda",nro:"1-623",id:"7061-1261",serie:"1306810D00176",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:true},
+  {fecha:"2025-03-26",escuela:"Manuel P. Antequeda",nro:"1-623",id:"7061-1238",serie:"1306810D00203",problema:"No arranca",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-26",escuela:"Juan Coria Bohórquez",nro:"1-461",id:"7061-442",serie:"1310194D00035",problema:"Pantalla Blanca",modelo:"2886 NET EXO MAT X5-S1441",ver:true},
+  {fecha:"2025-03-26",escuela:"Juan Coria Bohórquez",nro:"1-461",id:"7061-449",serie:"1310194D00012",problema:"Pantalla Blanca",modelo:"2886 NET EXO MAT X5-S1441",ver:true},
+  {fecha:"2025-03-26",escuela:"Juan Coria Bohórquez",nro:"1-461",id:"7061-437",serie:"1310194D00066",problema:"Pantalla Blanca",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-26",escuela:"Jesús de Nazaret",nro:"1-712",id:"7061-912",serie:"1307306D00019",problema:"PAD",modelo:"2886 NET X5-S144",ver:true},
+  {fecha:"2025-03-26",escuela:"Jesús de Nazaret",nro:"1-712",id:"7061-930",serie:"1307306D00062",problema:"PAD",modelo:"2886 NET X5-S144",ver:true},
+  {fecha:"2025-03-31",escuela:"Ciudad de Brasilia",nro:"1-714",id:"7061-1170",serie:"1306810D00206",problema:"PAD y pantalla negra",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Ciudad de Brasilia",nro:"1-714",id:"7061-1192",serie:"1306810D00154",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Ciudad de Brasilia",nro:"1-714",id:"7061-1187",serie:"1306810D00145",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Ciudad de Brasilia",nro:"1-714",id:"7061-1195",serie:"1306810D00168",problema:"PAD y pantalla negra",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Reyes Católicos",nro:"1-640",id:"7061-1206",serie:"1304640D00293",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:true},
+  {fecha:"2025-03-31",escuela:"Reyes Católicos",nro:"1-640",id:"7061-1130",serie:"1304640D00143",problema:"No Enciende",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Reyes Católicos",nro:"1-640",id:"7061-1224",serie:"1304640D00289",problema:"No Enciende",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Reyes Católicos",nro:"1-640",id:"7061-1131",serie:"1304640D00208",problema:"No Enciende",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Leonardo Da Vinci",nro:"1-628",id:"2832-308",serie:"1306810D0006",problema:"No funciona",modelo:"2927 EXO ADE PROVX",ver:false},
+  {fecha:"2025-03-31",escuela:"Leonardo Da Vinci",nro:"1-628",id:"7061-722",serie:"1304640D00200",problema:"No Enciende",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Leonardo Da Vinci",nro:"1-628",id:"7061-747",serie:"1304640D00243",problema:"No Enciende",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-03-31",escuela:"Leonardo Da Vinci",nro:"1-628",id:"7061-750",serie:"1304640D00003",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-04-01",escuela:"Provincia de Buenos Aires",nro:"1-077",id:"7061-760",serie:"130464D00026",problema:"PAD y no arranca",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-04-01",escuela:"Provincia de Buenos Aires",nro:"1-077",id:"7061-852",serie:"1306810D00244",problema:"PAD y contraseña",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+  {fecha:"2025-04-01",escuela:"Provincia de Buenos Aires",nro:"1-077",id:"7061-843",serie:"1306810D00286",problema:"PAD",modelo:"2886 NET EXO MAT X5-S1441",ver:false},
+];
+
+const CAJAS = [
+  {num:1,items:[{id:"7061-252",serie:"1261069B00004"},{id:"7061-257",serie:"1261069B00086"},{id:"7061-256",serie:"1261069B00042"},{id:"7061-254",serie:"1261069B00058"},{id:"7061-255",serie:"1261069B00083"}]},
+  {num:2,items:[{id:"7061-355",serie:"1261069B00065"},{id:"7061-365",serie:"1261069B00051"},{id:"7061-376",serie:"1261069B00077"},{id:"7061-356",serie:"1261069B00018"},{id:"7061-374",serie:"1261069B00060"},{id:"7061-375",serie:"1261069B00081"},{id:"7061-378",serie:"1261069B00059"},{id:"7061-377",serie:"1261069B00066"},{id:"7061-17",serie:"1225927B00157"}]},
+  {num:3,items:[{id:"7061-521",serie:"1306810D00016"},{id:"7061-519",serie:"1306810D00272"},{id:"7061-518",serie:"1306810D00270"},{id:"7061-520",serie:"1306810D00055"},{id:"7061-517",serie:"1306810D00058"}]},
+  {num:4,items:[{id:"7061-765",serie:"1304640D00232"},{id:"7061-762",serie:"1304640D00004"},{id:"7061-761",serie:"1304640D00022"},{id:"7061-763",serie:"1304640D00171"},{id:"7061-764",serie:"1304640D00049"}]},
+  {num:5,items:[{id:"7061-824",serie:"1306810D00275"},{id:"7061-823",serie:"1306810D00194"},{id:"7061-826",serie:"1306810D00171"},{id:"7061-822",serie:"1306810D00254"},{id:"7061-825",serie:"1306810D00271"}]},
+  {num:6,items:[{id:"7061-502",serie:"1306810D00076"},{id:"7061-503",serie:"1306810D00069"},{id:"7061-505",serie:"1306810D00256"},{id:"7061-506",serie:"1306810D00033"},{id:"7061-504",serie:"1306810D00253"}]},
+  {num:7,items:[{id:"7061-831",serie:"1306810D00279"},{id:"7061-175",serie:"1304640D00102"},{id:"7061-771",serie:"1304640D00093"},{id:"7061-828",serie:"1306810D00259"},{id:"7061-773",serie:"1304640D00041"}]},
+  {num:8,items:[{id:"7061-624",serie:"1304640D00228"},{id:"7061-829",serie:"1306810D00265"},{id:"7061-830",serie:"1306810D00273"},{id:"7061-613",serie:"1304640D00270"},{id:"7061-827",serie:"1306810D00264"}]},
+  {num:9,items:[{id:"7061-619",serie:"1304640D00223"},{id:"7061-620",serie:"1304640D00350"},{id:"7061-621",serie:"1304640D00183"},{id:"7061-623",serie:"1304640D00230"}]},
+  {num:10,items:[{id:"7061-525",serie:"1306810D00258"},{id:"7061-527",serie:"1306810D00067"},{id:"7061-528",serie:"1306810D00262"},{id:"7061-524",serie:"1306810D00261"},{id:"7061-526",serie:"1306810D00065"}]},
+  {num:11,items:[{id:"7061-591",serie:"1310194D00102"},{id:"7061-588",serie:"1310194D00161"},{id:"7061-592",serie:"1310194D00149"},{id:"7061-589",serie:"1310194D00010"},{id:"7061-590",serie:"1310194D00097"}]},
+  {num:12,items:[{id:"7061-580",serie:"1310194D00107"},{id:"7061-576",serie:"1310194D00031"},{id:"7061-579",serie:"1310194D00073"},{id:"7061-577",serie:"1310194D00075"},{id:"7061-568",serie:"1310194D00015"}]},
+  {num:13,items:[{id:"7061-573",serie:"1310194D00187"},{id:"7061-571",serie:"1310194D00029"}]},
+];
+
+// ─── INIT ─────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // Date
+  const now = new Date();
+  document.getElementById('fecha-chip').textContent =
+    now.toLocaleDateString('es-AR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+
+  // Set retiro date to today
+  document.getElementById('ret-fecha').value = now.toISOString().slice(0,10);
+
+  // KPI counts
+  document.getElementById('nb-educar').textContent = EDUCAR_DATA.length;
+  document.getElementById('nb-prob').textContent = PROBLEMAS_DATA.length;
+  document.getElementById('kpi-educar').textContent = EDUCAR_DATA.length;
+  document.getElementById('kpi-prob').textContent = PROBLEMAS_DATA.length;
+
+  renderTopEscuelas();
+  renderEscuelas();
+  renderEducar();
+  renderBateria();
+  renderFuera();
+  renderCajas();
+  renderProblemas();
+  renderRetiroEscuelas();
+  loadRetiros();
+  applyTheme();
+});
+
+// ─── NAVIGATION ──────────────────────────────────────────────────
+function showSection(name, el) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-'+name).classList.add('active');
+  el.classList.add('active');
+  const titles = {resumen:'Resumen General',escuelas:'Inventario por Escuela',
+    educar:'Computadoras en EDUCAR',cdf:'Casa del Futuro',
+    problemas:'Equipos con Problemas',retiros:'Retiros y Devoluciones'};
+  document.getElementById('topbar-title').textContent = titles[name];
+}
+
+// ─── THEME ────────────────────────────────────────────────────────
+function applyTheme() {
+  const t = localStorage.getItem('edutec-theme') || '';
+  if(t) document.documentElement.setAttribute('data-theme', t);
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = (cur === 'dark') ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('edutec-theme', next);
+}
+
+// ─── ESCUELAS ─────────────────────────────────────────────────────
+function tandaLabel(t) {
+  const map = {1:'<span class="chip ch-blue">1° Tanda</span>',2:'<span class="chip ch-green">2° Tanda</span>',3:'<span class="chip ch-gold">3° Tanda</span>',4:'<span class="chip ch-red">4° Tanda</span>'};
+  return map[t]||'';
+}
+
+function renderTopEscuelas() {
+  const sorted = [...ESCUELAS].sort((a,b)=>b.notebooks-a.notebooks).slice(0,10);
+  const max = sorted[0].notebooks;
+  const tbody = document.getElementById('top-escuelas-body');
+  tbody.innerHTML = sorted.map(e => `
+    <tr>
+      <td>${e.nombre}</td>
+      <td class="mono">${e.id}</td>
+      <td>${tandaLabel(e.tanda)}</td>
+      <td><strong style="font-variant-numeric:tabular-nums">${e.notebooks}</strong></td>
+      <td style="min-width:120px">
+        <div style="height:6px;background:var(--border);border-radius:3px">
+          <div style="height:100%;width:${Math.round(e.notebooks/max*100)}%;background:var(--sky);border-radius:3px"></div>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+
+let escFiltered = [...ESCUELAS];
+function filterEscuelas() {
+  const q = document.getElementById('esc-search').value.toLowerCase();
+  const t = document.getElementById('esc-tanda').value;
+  const s = document.getElementById('esc-sort').value;
+  escFiltered = ESCUELAS.filter(e =>
+    (!q || e.nombre.toLowerCase().includes(q) || e.id.includes(q)) &&
+    (!t || String(e.tanda) === t)
+  );
+  if(s==='notebooks-desc') escFiltered.sort((a,b)=>b.notebooks-a.notebooks);
+  else if(s==='notebooks-asc') escFiltered.sort((a,b)=>a.notebooks-b.notebooks);
+  else if(s==='nombre') escFiltered.sort((a,b)=>a.nombre.localeCompare(b.nombre));
+  else if(s==='numero') escFiltered.sort((a,b)=>a.id.localeCompare(b.id));
+  renderEscuelas();
+}
+
+function renderEscuelas() {
+  const max = Math.max(...ESCUELAS.map(e=>e.notebooks));
+  const tbody = document.getElementById('escuelas-body');
+  tbody.innerHTML = escFiltered.map(e => `
+    <tr>
+      <td class="mono">${e.id}</td>
+      <td><strong>${e.nombre}</strong></td>
+      <td>${tandaLabel(e.tanda)}</td>
+      <td style="font-variant-numeric:tabular-nums;font-weight:700">${e.notebooks}</td>
+      <td style="text-align:center">✓</td>
+      <td style="text-align:center">✓</td>
+      <td style="text-align:center">✓</td>
+      <td style="text-align:center">✓</td>
+      <td style="text-align:center">✓</td>
+      <td style="min-width:100px">
+        <div style="height:5px;background:var(--border);border-radius:3px">
+          <div style="height:100%;width:${Math.round(e.notebooks/max*100)}%;background:var(--sky);border-radius:3px"></div>
+        </div>
+      </td>
+    </tr>`).join('');
+  document.getElementById('esc-count').textContent = escFiltered.length;
+  document.getElementById('esc-total').textContent = escFiltered.reduce((s,e)=>s+e.notebooks,0).toLocaleString('es-AR');
+}
+
+// ─── EDUCAR ───────────────────────────────────────────────────────
+function probChip(p) {
+  const pl = p.toLowerCase();
+  if(pl.includes('lista')||pl.includes('listo')) return `<span class="chip ch-green">${p}</span>`;
+  if(pl.includes('no enciende')||pl.includes('no arranca')||pl.includes('no funciona')||pl.includes('no prende')) return `<span class="chip ch-red">${p}</span>`;
+  if(pl.includes('pad')) return `<span class="chip ch-blue">${p}</span>`;
+  if(pl.includes('bateria')||pl.includes('carga')) return `<span class="chip ch-amber">${p}</span>`;
+  if(pl.includes('pantalla')) return `<span class="chip ch-red">${p}</span>`;
+  if(pl.includes('disco')||pl.includes('ssd')) return `<span class="chip ch-amber">${p}</span>`;
+  return `<span class="chip" style="background:var(--bg)">${p}</span>`;
+}
+
+let eduFiltered = [...EDUCAR_DATA];
+function filterEducar() {
+  const q = document.getElementById('edu-search').value.toLowerCase();
+  const p = document.getElementById('edu-prob').value.toUpperCase();
+  eduFiltered = EDUCAR_DATA.filter(e =>
+    (!q || e.escuela.toLowerCase().includes(q) || e.id.toLowerCase().includes(q) || e.problema.toLowerCase().includes(q)) &&
+    (!p || e.problema.toUpperCase().includes(p))
+  );
+  renderEducar();
+}
+
+function renderEducar() {
+  const tbody = document.getElementById('educar-body');
+  tbody.innerHTML = eduFiltered.map(e => `
+    <tr>
+      <td><strong>${e.escuela}</strong></td>
+      <td class="mono">${e.nro}</td>
+      <td class="mono">${e.id}</td>
+      <td>${probChip(e.problema)}</td>
+      <td>${e.entrega ? `<span class="chip ch-green">${e.entrega}</span>` : '<span style="color:var(--muted)">—</span>'}</td>
+    </tr>`).join('');
+  document.getElementById('edu-count').textContent = eduFiltered.length;
+}
+
+// ─── BATERIA ──────────────────────────────────────────────────────
+function renderBateria() {
+  const tbody = document.getElementById('bateria-body');
+  tbody.innerHTML = BATERIA_CDF.map(e => `
+    <tr>
+      <td>${e.escuela}</td>
+      <td class="mono">${e.nro}</td>
+      <td class="mono">${e.id}</td>
+      <td class="mono">${e.serie}</td>
+      <td style="font-size:12px">${e.modelo}</td>
+      <td>${e.estado==='Reparada'?'<span class="chip ch-green">Reparada</span>':'<span class="chip ch-amber">En CDF</span>'}</td>
+    </tr>`).join('');
+}
+
+function renderFuera() {
+  const tbody = document.getElementById('fuera-body');
+  tbody.innerHTML = FUERA_GARANTIA.map(e => `
+    <tr>
+      <td>${e.escuela}</td>
+      <td class="mono">${e.nro}</td>
+      <td class="mono">${e.id}</td>
+      <td class="mono">${e.serie}</td>
+      <td>${probChip(e.problema)}</td>
+      <td style="font-size:12px">${e.modelo}</td>
+    </tr>`).join('');
+}
+
+function renderCajas() {
+  const grid = document.getElementById('cajas-grid');
+  grid.innerHTML = CAJAS.map(c => `
+    <div class="caja-card">
+      <div class="caja-hd">
+        <span>📦 CAJA N° ${c.num}</span>
+        <span>${c.items.length} notebooks</span>
+      </div>
+      <div class="caja-body">
+        ${c.items.map(i=>`
+          <div class="caja-row">
+            <span class="mono">${i.id}</span>
+            <span class="mono" style="color:var(--muted)">${i.serie}</span>
+          </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// ─── PROBLEMAS ───────────────────────────────────────────────────
+let probFiltered = [...PROBLEMAS_DATA];
+function filterProblemas() {
+  const q = document.getElementById('prob-search').value.toLowerCase();
+  const t = document.getElementById('prob-tipo').value;
+  const v = document.getElementById('prob-ver').value;
+  probFiltered = PROBLEMAS_DATA.filter(e => {
+    const pl = e.problema.toLowerCase();
+    const matchQ = !q || e.escuela.toLowerCase().includes(q) || e.id.toLowerCase().includes(q) || e.serie.toLowerCase().includes(q) || pl.includes(q);
+    const matchT = !t ||
+      (t==='bateria' && pl.includes('bater')) ||
+      (t==='pad' && (pl.includes('pad')||pl.includes('táctil')||pl.includes('tactil'))) ||
+      (t==='enciende' && (pl.includes('enciende')||pl.includes('arranca')||pl.includes('prende')||pl.includes('funciona'))) ||
+      (t==='disco' && (pl.includes('disco')||pl.includes('ssd'))) ||
+      (t==='pantalla' && pl.includes('pantalla')) ||
+      (t==='wifi' && pl.includes('wifi')) ||
+      (t==='otro' && !['bater','pad','enciende','arranca','prende','funciona','disco','ssd','pantalla','wifi'].some(k=>pl.includes(k)));
+    const matchV = !v || String(e.ver) === v;
+    return matchQ && matchT && matchV;
+  });
+  renderProblemas();
+}
+
+function renderProblemas() {
+  const tbody = document.getElementById('problemas-body');
+  tbody.innerHTML = probFiltered.map(e => `
+    <tr>
+      <td style="white-space:nowrap">${e.fecha}</td>
+      <td>${e.escuela}</td>
+      <td class="mono">${e.nro}</td>
+      <td class="mono">${e.id}</td>
+      <td class="mono">${e.serie}</td>
+      <td>${probChip(e.problema)}</td>
+      <td style="font-size:12px;max-width:160px">${e.modelo}</td>
+      <td>${e.ver?'<span class="chip ch-green">✓ Verif.</span>':'<span class="chip" style="background:var(--bg);color:var(--muted)">—</span>'}</td>
+    </tr>`).join('');
+  document.getElementById('prob-count').textContent = probFiltered.length;
+}
+
+// ─── RETIROS ─────────────────────────────────────────────────────
+function renderRetiroEscuelas() {
+  const sel = document.getElementById('ret-escuela');
+  ESCUELAS.sort((a,b)=>a.nombre.localeCompare(b.nombre)).forEach(e => {
+    const opt = document.createElement('option');
+    opt.value = e.nombre + ' (' + e.id + ')';
+    opt.textContent = e.nombre + ' — ' + e.id;
+    sel.appendChild(opt);
+  });
+}
+
+function getRetiros() {
+  try { return JSON.parse(localStorage.getItem('edutec-retiros') || '[]'); } catch(e) { return []; }
+}
+function saveRetiros(arr) { localStorage.setItem('edutec-retiros', JSON.stringify(arr)); }
+
+function addRetiro() {
+  const ret = {
+    id: Date.now(),
+    fecha: document.getElementById('ret-fecha').value,
+    escuela: document.getElementById('ret-escuela').value,
+    codgc: document.getElementById('ret-id').value.trim(),
+    serie: document.getElementById('ret-serie').value.trim(),
+    tipo: document.getElementById('ret-tipo').value,
+    responsable: document.getElementById('ret-resp').value.trim(),
+    obs: document.getElementById('ret-obs').value.trim(),
+    devuelto: false,
+    fechaDevolucion: ''
+  };
+  if(!ret.fecha||!ret.escuela||!ret.codgc) { alert('Completá: Fecha, Escuela e ID/Cód. GC'); return; }
+  const arr = getRetiros();
+  arr.unshift(ret);
+  saveRetiros(arr);
+  // Clear form
+  ['ret-id','ret-serie','ret-resp','ret-obs'].forEach(id => document.getElementById(id).value='');
+  renderRetiros();
+}
+
+function marcarDevuelto(id) {
+  const arr = getRetiros();
+  const r = arr.find(x=>x.id===id);
+  if(r) { r.devuelto=true; r.fechaDevolucion=new Date().toISOString().slice(0,10); }
+  saveRetiros(arr);
+  renderRetiros();
+}
+
+function eliminarRetiro(id) {
+  if(!confirm('¿Eliminar este registro?')) return;
+  saveRetiros(getRetiros().filter(x=>x.id!==id));
+  renderRetiros();
+}
+
+let retFiltered = [];
+function filterRetiros() {
+  const q = document.getElementById('ret-search').value.toLowerCase();
+  const sf = document.getElementById('ret-status-filter').value;
+  const all = getRetiros();
+  retFiltered = all.filter(r => {
+    const matchQ = !q || r.escuela.toLowerCase().includes(q) || r.codgc.toLowerCase().includes(q) || r.responsable.toLowerCase().includes(q);
+    const matchS = !sf || (sf==='activo'&&!r.devuelto) || (sf==='devuelto'&&r.devuelto);
+    return matchQ && matchS;
+  });
+  renderRetiros(retFiltered);
+}
+
+function loadRetiros() { renderRetiros(); }
+
+function renderRetiros(data) {
+  const arr = data || getRetiros();
+  const tbody = document.getElementById('retiros-body');
+  if(!arr.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="empty">No hay retiros registrados</td></tr>';
+    document.getElementById('retiros-sum').innerHTML = '<div class="sum-item">Sin retiros registrados aún</div>';
+    return;
+  }
+  tbody.innerHTML = arr.map(r => `
+    <tr class="${r.devuelto?'ret-devuelto':''}">
+      <td style="white-space:nowrap">${r.fecha}</td>
+      <td>${r.escuela}</td>
+      <td class="mono">${r.codgc||'—'}</td>
+      <td class="mono">${r.serie||'—'}</td>
+      <td><span class="chip ch-blue">${r.tipo}</span></td>
+      <td>${r.responsable||'—'}</td>
+      <td style="max-width:160px;font-size:12px">${r.obs||'—'}</td>
+      <td>${r.devuelto
+        ? `<span class="chip ch-green">Devuelto ${r.fechaDevolucion}</span>`
+        : '<span class="chip ch-amber">Activo</span>'}</td>
+      <td>
+        ${!r.devuelto?`<button class="btn btn-success btn-sm" onclick="marcarDevuelto(${r.id})">✓ Devuelto</button> `:''}
+        <button class="btn btn-outline btn-sm" onclick="eliminarRetiro(${r.id})">✕</button>
+      </td>
+    </tr>`).join('');
+  const total = getRetiros().length;
+  const activos = getRetiros().filter(r=>!r.devuelto).length;
+  document.getElementById('retiros-sum').innerHTML = `
+    <div class="sum-item">Total: <strong>${total}</strong></div>
+    <div class="sum-item">Activos: <strong>${activos}</strong></div>
+    <div class="sum-item">Devueltos: <strong>${total-activos}</strong></div>`;
+}
+</script>
+</body>
+</html>
