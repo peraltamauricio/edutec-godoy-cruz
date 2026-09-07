@@ -148,7 +148,6 @@ tr:hover td{background:var(--bg)}
       <div class="kpi gold"><div class="kpi-label">En EDUCAR</div><div class="kpi-val" id="kpi-educar">-</div><div class="kpi-sub">De las 1.474, en reparacion</div></div>
       <div class="kpi amber"><div class="kpi-label">Casa del Futuro</div><div class="kpi-val" id="kpi-cdf">-</div><div class="kpi-sub" id="kpi-cdf-sub">De las 1.474</div></div>
       <div class="kpi red"><div class="kpi-label">Con Problemas</div><div class="kpi-val" id="kpi-prob">-</div><div class="kpi-sub">Otros Problemas registrados</div></div>
-      <div class="kpi blue"><div class="kpi-label">Deposito (segun plan)</div><div class="kpi-val">305</div><div class="kpi-sub" id="kpi-deposito-sub">Sin asignar — detalle por serie: -</div></div>
     </div>
     <div class="sec-sub" style="margin-top:-10px">⚠️ "En EDUCAR" y "Casa del Futuro" ya están incluidos dentro de las 1.474 asignadas a escuelas — son equipos temporalmente fuera de su escuela, no se suman aparte del total de 1.794.</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
@@ -241,7 +240,7 @@ tr:hover td{background:var(--bg)}
     <div class="card">
       <div class="card-hd"><span class="card-title">Cajas en Deposito &mdash; EducarLab</span><span class="chip ch-blue" id="chip-cajas-total">- cajas</span></div>
       <div class="card-body">
-        <div class="sec-sub" style="margin-bottom:14px">&#9888;&#65039; El plan oficial dice 305 equipos en deposito sin asignar, pero solo tenemos detalle por N&deg; de serie de estas cajas. Las demas unidades del deposito no estan cargadas en este dashboard todavia.</div>
+        <div class="sec-sub" style="margin-bottom:14px">&#9888;&#65039; Estas son las unicas unidades del deposito con detalle por N&deg; de serie verificado. El total real del deposito esta pendiente de verificacion fisica.</div>
         <div class="cajas-grid" id="cajas-grid"></div>
       </div>
     </div>
@@ -1034,7 +1033,6 @@ function updateResumenYCdfKpis() {
   document.getElementById('kpi-en-escuela').textContent = Math.max(0, asignadas - educarCount - cdfTotal).toLocaleString('es-AR');
 
   const totalEnCajas = CAJAS.reduce((s,c)=>s+c.items.length,0);
-  document.getElementById('kpi-deposito-sub').textContent = `Sin asignar — detalle por serie: ${totalEnCajas} (${CAJAS.length} cajas)`;
   document.getElementById('chip-cajas-total').textContent = `${CAJAS.length} cajas · ${totalEnCajas} equipos`;
 }
 
