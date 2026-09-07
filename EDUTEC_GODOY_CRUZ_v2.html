@@ -121,7 +121,7 @@ tr:hover td{background:var(--bg)}
     <div class="nav-item" onclick="showSection('escuelas',this)"><span class="nav-icon">&#127979;</span> Inventario Escuelas<span class="nb nb-blue" id="nb-escuelas">46</span></div>
     <div class="sb-sect">Ubicaciones</div>
     <div class="nav-item" onclick="showSection('educar',this)"><span class="nav-icon">&#127970;</span> En EDUCAR<span class="nb nb-gold" id="nb-educar">-</span></div>
-    <div class="nav-item" onclick="showSection('cdf',this)"><span class="nav-icon">&#128230;</span> Casa del Futuro<span class="nb nb-blue">87</span></div>
+    <div class="nav-item" onclick="showSection('cdf',this)"><span class="nav-icon">&#128230;</span> Casa del Futuro<span class="nb nb-blue" id="nb-cdf">-</span></div>
     <div class="sb-sect">Gestion</div>
     <div class="nav-item" onclick="showSection('problemas',this)"><span class="nav-icon">&#9888;&#65039;</span> Equipos con Problemas<span class="nb nb-red" id="nb-prob">-</span></div>
     <div class="nav-item" onclick="showSection('retiros',this)"><span class="nav-icon">&#128260;</span> Retiros / Devoluciones</div>
@@ -142,13 +142,15 @@ tr:hover td{background:var(--bg)}
     <div class="sec-title">Resumen General</div>
     <div class="sec-sub">Estado del parque tecnologico EXO EDUTEC - Godoy Cruz</div>
     <div class="kpi-grid">
-      <div class="kpi blue"><div class="kpi-label">Total Computadoras</div><div class="kpi-val">1.794</div><div class="kpi-sub">Distribuidas + deposito</div></div>
-      <div class="kpi green"><div class="kpi-label">En Escuelas</div><div class="kpi-val">1.474</div><div class="kpi-sub">46 establecimientos</div></div>
-      <div class="kpi gold"><div class="kpi-label">En EDUCAR</div><div class="kpi-val" id="kpi-educar">-</div><div class="kpi-sub">Esperando reparacion</div></div>
-      <div class="kpi amber"><div class="kpi-label">Casa del Futuro</div><div class="kpi-val">87</div><div class="kpi-sub">53 bat. + 23 sin garantia + 11 rep.</div></div>
+      <div class="kpi blue"><div class="kpi-label">Total Parque EDUTEC</div><div class="kpi-val">1.794</div><div class="kpi-sub">Escuelas + deposito (historico)</div></div>
+      <div class="kpi green"><div class="kpi-label">Asignadas a Escuelas</div><div class="kpi-val">1.474</div><div class="kpi-sub">Segun plan oficial, 46 estab.</div></div>
+      <div class="kpi green"><div class="kpi-label">En la Escuela Ahora</div><div class="kpi-val" id="kpi-en-escuela">-</div><div class="kpi-sub">De las 1.474, fisicamente presentes</div></div>
+      <div class="kpi gold"><div class="kpi-label">En EDUCAR</div><div class="kpi-val" id="kpi-educar">-</div><div class="kpi-sub">De las 1.474, en reparacion</div></div>
+      <div class="kpi amber"><div class="kpi-label">Casa del Futuro</div><div class="kpi-val" id="kpi-cdf">-</div><div class="kpi-sub" id="kpi-cdf-sub">De las 1.474</div></div>
       <div class="kpi red"><div class="kpi-label">Con Problemas</div><div class="kpi-val" id="kpi-prob">-</div><div class="kpi-sub">Otros Problemas registrados</div></div>
-      <div class="kpi blue"><div class="kpi-label">Deposito</div><div class="kpi-val">305</div><div class="kpi-sub">Sin asignar / Cajas</div></div>
+      <div class="kpi blue"><div class="kpi-label">Deposito (segun plan)</div><div class="kpi-val">305</div><div class="kpi-sub" id="kpi-deposito-sub">Sin asignar — detalle por serie: -</div></div>
     </div>
+    <div class="sec-sub" style="margin-top:-10px">⚠️ "En EDUCAR" y "Casa del Futuro" ya están incluidos dentro de las 1.474 asignadas a escuelas — son equipos temporalmente fuera de su escuela, no se suman aparte del total de 1.794.</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
       <div class="card">
         <div class="card-hd"><span class="card-title">Distribucion por Tanda</span></div>
@@ -222,23 +224,26 @@ tr:hover td{background:var(--bg)}
 
   <div class="section" id="section-cdf">
     <div class="sec-title">Casa del Futuro (CDF)</div>
-    <div class="sec-sub">87 equipos totales</div>
+    <div class="sec-sub" id="cdf-total-sub">- equipos totales</div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
-      <div class="kpi amber"><div class="kpi-label">Bateria Hinchada</div><div class="kpi-val">53</div></div>
-      <div class="kpi red"><div class="kpi-label">Fuera de Garantia</div><div class="kpi-val">23</div></div>
-      <div class="kpi green"><div class="kpi-label">Reparadas</div><div class="kpi-val">11</div></div>
+      <div class="kpi amber"><div class="kpi-label">Bateria Hinchada (sin reparar)</div><div class="kpi-val" id="kpi-cdf-bateria">-</div></div>
+      <div class="kpi red"><div class="kpi-label">Fuera de Garantia</div><div class="kpi-val" id="kpi-cdf-fuera">-</div></div>
+      <div class="kpi green"><div class="kpi-label">Reparadas</div><div class="kpi-val" id="kpi-cdf-reparadas">-</div></div>
     </div>
     <div class="card">
-      <div class="card-hd"><span class="card-title">&#9888;&#65039; Bateria Hinchada &mdash; En Casa del Futuro</span><span class="chip ch-amber">53 equipos</span></div>
+      <div class="card-hd"><span class="card-title">&#9888;&#65039; Bateria Hinchada &mdash; En Casa del Futuro</span><span class="chip ch-amber" id="chip-bateria-total">- equipos</span></div>
       <div class="tw"><table><thead><tr><th>Escuela</th><th>N&deg; Esc.</th><th>ID (Cod. GC)</th><th>N&deg; de Serie</th><th>Modelo</th><th>Estado CDF</th></tr></thead><tbody id="bateria-body"></tbody></table></div>
     </div>
     <div class="card">
-      <div class="card-hd"><span class="card-title">Fuera de Garantia &mdash; En Casa del Futuro</span><span class="chip ch-red">23 equipos</span></div>
+      <div class="card-hd"><span class="card-title">Fuera de Garantia &mdash; En Casa del Futuro</span><span class="chip ch-red" id="chip-fuera-total">- equipos</span></div>
       <div class="tw"><table><thead><tr><th>Escuela</th><th>N&deg; Esc.</th><th>ID (Cod. GC)</th><th>N&deg; de Serie</th><th>Problema</th><th>Modelo</th></tr></thead><tbody id="fuera-body"></tbody></table></div>
     </div>
     <div class="card">
-      <div class="card-hd"><span class="card-title">Cajas en Deposito &mdash; EducarLab</span><span class="chip ch-blue">13 cajas</span></div>
-      <div class="card-body"><div class="cajas-grid" id="cajas-grid"></div></div>
+      <div class="card-hd"><span class="card-title">Cajas en Deposito &mdash; EducarLab</span><span class="chip ch-blue" id="chip-cajas-total">- cajas</span></div>
+      <div class="card-body">
+        <div class="sec-sub" style="margin-bottom:14px">&#9888;&#65039; El plan oficial dice 305 equipos en deposito sin asignar, pero solo tenemos detalle por N&deg; de serie de estas cajas. Las demas unidades del deposito no estan cargadas en este dashboard todavia.</div>
+        <div class="cajas-grid" id="cajas-grid"></div>
+      </div>
     </div>
   </div>
 
@@ -821,8 +826,20 @@ function escuelaStats(esc) {
 
   const asignadas = esc.notebooks; // segun planificacion oficial
   const enInventarioDetalle = enEscuela;
-  const faltantes = Math.max(0, asignadas - enInventarioDetalle);
-  return { asignadas, enInventarioDetalle, faltantes, enEducar, enCdf, retirosDevueltos };
+  // Cuantas unidades del plan oficial no tienen NINGUN registro (ni en la escuela, ni en EDUCAR, ni en CDF).
+  // Puede ser 0 si la planilla de carros tiene, para esa escuela, igual o mas unidades registradas que el plan.
+  const registradas = enEscuela + enEducar + enCdf;
+  const sinVerificar = Math.max(0, asignadas - registradas);
+  // "Faltantes" = todo lo que hoy no esta fisicamente en la escuela: lo que esta en reparacion
+  // (EDUCAR + Casa del Futuro) mas lo que el plan dice que deberia existir pero no aparece en ningun lado.
+  // OJO: NO es simplemente "asignadas - enEscuela", porque cuando la planilla de carros tiene mas unidades
+  // registradas para una escuela que las que el plan oficial le asigna, esa resta subestima lo que realmente
+  // esta en EDUCAR/CDF.
+  const faltantes = enEducar + enCdf + sinVerificar;
+  // Si la planilla de carros tiene MAS unidades registradas para esta escuela que las que el plan le asigna
+  // (pasa en algunas escuelas), lo mostramos aparte en vez de esconderlo dentro de otro numero.
+  const excedente = Math.max(0, registradas - asignadas);
+  return { asignadas, enInventarioDetalle, faltantes, enEducar, enCdf, sinVerificar, excedente, retirosDevueltos };
 }
 
 function renderTopEscuelas() {
@@ -895,7 +912,9 @@ function openSchoolModal(id) {
     <div class="mini-kpi mini-green"><div class="mini-kpi-val">${st.enInventarioDetalle}</div><div class="mini-kpi-lbl">En Escuela</div></div>
     <div class="mini-kpi mini-gold"><div class="mini-kpi-val">${st.enEducar}</div><div class="mini-kpi-lbl">En EDUCAR</div></div>
     <div class="mini-kpi mini-red"><div class="mini-kpi-val">${st.enCdf}</div><div class="mini-kpi-lbl">En Casa del Futuro</div></div>
-    <div class="mini-kpi mini-red"><div class="mini-kpi-val">${st.faltantes}</div><div class="mini-kpi-lbl">Faltantes</div></div>
+    ${st.sinVerificar > 0 ? `<div class="mini-kpi mini-amber"><div class="mini-kpi-val">${st.sinVerificar}</div><div class="mini-kpi-lbl">Sin dato en planilla</div></div>` : ''}
+    <div class="mini-kpi mini-red"><div class="mini-kpi-val">${st.faltantes}</div><div class="mini-kpi-lbl">Faltantes (total)</div></div>
+    ${st.excedente > 0 ? `<div class="mini-kpi mini-blue"><div class="mini-kpi-val">+${st.excedente}</div><div class="mini-kpi-lbl">Excedente vs. plan</div></div>` : ''}
   `;
   document.getElementById('modal-search').value = '';
   document.getElementById('modal-tipo-filter').value = '';
@@ -990,6 +1009,33 @@ function renderEducar() {
   document.getElementById('edu-count').textContent = eduFiltered.length;
   document.getElementById('nb-educar').textContent = educarActivos().length;
   document.getElementById('kpi-educar').textContent = educarActivos().length;
+  updateResumenYCdfKpis();
+}
+
+// Recalcula todos los KPIs de CDF y del Resumen general a partir de los arrays reales,
+// para que nunca queden desincronizados de los datos (y no haya que sumarlos a mano).
+function updateResumenYCdfKpis() {
+  const cdfBateriaSI = BATERIA_CDF.filter(x=>x.estado==='SI').length;
+  const cdfReparadas = BATERIA_CDF.filter(x=>x.estado==='Reparada').length;
+  const cdfFuera = FUERA_GARANTIA.length;
+  const cdfTotal = BATERIA_CDF.length + cdfFuera; // (bateria SI + reparadas) + fuera de garantia, sin duplicar
+  const educarCount = educarActivos().length;
+  const asignadas = 1474;
+
+  document.getElementById('kpi-cdf').textContent = cdfTotal;
+  document.getElementById('kpi-cdf-sub').textContent = `De las 1.474: ${cdfBateriaSI} bat. + ${cdfReparadas} rep. + ${cdfFuera} s/gtia.`;
+  document.getElementById('nb-cdf').textContent = cdfTotal;
+  document.getElementById('kpi-cdf-bateria').textContent = cdfBateriaSI;
+  document.getElementById('kpi-cdf-fuera').textContent = cdfFuera;
+  document.getElementById('kpi-cdf-reparadas').textContent = cdfReparadas;
+  document.getElementById('cdf-total-sub').textContent = `${cdfTotal} equipos totales (${BATERIA_CDF.length} bateria + ${cdfFuera} sin garantia)`;
+  document.getElementById('chip-bateria-total').textContent = `${BATERIA_CDF.length} equipos (${cdfBateriaSI} pendientes + ${cdfReparadas} reparadas)`;
+  document.getElementById('chip-fuera-total').textContent = `${cdfFuera} equipos`;
+  document.getElementById('kpi-en-escuela').textContent = Math.max(0, asignadas - educarCount - cdfTotal).toLocaleString('es-AR');
+
+  const totalEnCajas = CAJAS.reduce((s,c)=>s+c.items.length,0);
+  document.getElementById('kpi-deposito-sub').textContent = `Sin asignar — detalle por serie: ${totalEnCajas} (${CAJAS.length} cajas)`;
+  document.getElementById('chip-cajas-total').textContent = `${CAJAS.length} cajas · ${totalEnCajas} equipos`;
 }
 
 function retirarDeEducar(codgc, nroEsc, escuelaNombre) {
