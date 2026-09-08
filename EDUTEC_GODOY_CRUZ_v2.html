@@ -160,6 +160,20 @@ tbody tr:hover td{background:var(--bg)}
   <div class="section" id="section-educar">
     <div class="sec-title">Computadoras en EDUCAR</div>
     <div class="sec-sub">Equipos en el centro. Al registrar el retiro, salen de esta lista.</div>
+    <div class="card">
+      <div class="card-hd"><span class="card-title">Registrar ingreso a EDUCAR</span>
+        <span class="chip ch-gray" id="ing-count"></span></div>
+      <div class="card-body">
+        <div class="form-grid">
+          <div class="fg"><label>ID (Cod. GC)</label><input class="fc mono" type="text" id="ing-id" placeholder="7061-486" oninput="chkIngreso()"></div>
+          <div class="fg"><label>N&deg; de serie</label><input class="fc mono" type="text" id="ing-serie" placeholder="se completa solo"></div>
+          <div class="fg"><label>Fecha de ingreso</label><input class="fc" type="date" id="ing-fecha"></div>
+          <div class="fg"><label>Problema</label><input class="fc" type="text" id="ing-prob" placeholder="Ej: no enciende"></div>
+        </div>
+        <div id="ing-msg" style="margin-bottom:12px;font-size:12.5px"></div>
+        <button class="btn btn-primary" onclick="addIngreso()">Registrar ingreso</button>
+      </div>
+    </div>
     <div class="search-row">
       <input class="s-input" type="text" placeholder="Buscar escuela, ID o problema..." id="edu-q" oninput="renderEducar()">
       <select class="s-sel" id="edu-estado" onchange="renderEducar()">
@@ -297,7 +311,18 @@ const OWNER = {};                    // ID normalizado -> escuela duena (inventa
 ESCUELAS.forEach(e => e.items.forEach(it => {
   if (it.n && it.n !== 'S/N' && !(it.n in OWNER)) OWNER[it.n] = e.id;
 }));
-const EDU_BY_N = {}; EDUCAR.forEach(r => { if (r.n) EDU_BY_N[r.n] = r; });
+function normId(v){
+  let s=(v||'').toUpperCase().replace(/\s/g,'').replace(/\./g,'-').replace(/-+/g,'-');
+  const m=s.match(/^(\d{3,4})-0*(\d+)$/);
+  return m ? m[1]+'-'+parseInt(m[2],10) : s;
+}
+function getIngresos(){ try { return JSON.parse(localStorage.getItem('edutec-ingresos-2026')||'[]'); } catch(e){ return []; } }
+function saveIngresos(a){ localStorage.setItem('edutec-ingresos-2026', JSON.stringify(a)); }
+// Lista viva de EDUCAR: lo que vino del Excel + lo que se carga desde el dashboard
+function educarAll(){ return EDUCAR.concat(getIngresos()); }
+let EDU_BY_N = {};
+function rebuildEdu(){ EDU_BY_N={}; educarAll().forEach(r=>{ if(r.n) EDU_BY_N[r.n]=r; }); }
+rebuildEdu();
 const CDF_BY_N = {}; CDF.forEach(r => { if (r.n) CDF_BY_N[r.n] = r; });
 
 function getRetiros(){ try { return JSON.parse(localStorage.getItem('edutec-retiros-2026') || '[]'); } catch(e) { return []; } }
@@ -331,6 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const hoy = new Date();
   document.getElementById('fecha-chip').textContent = hoy.toLocaleDateString('es-AR',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   document.getElementById('ret-fecha').value = hoy.toISOString().slice(0,10);
+  document.getElementById('ing-fecha').value = hoy.toISOString().slice(0,10);
   document.querySelectorAll('.nav-item').forEach(n => n.onclick = () => showSection(n.dataset.sec, n));
   ESCUELAS.forEach(e => {
     const o=document.createElement('option'); o.value=e.id; o.textContent=e.nombre+' - '+e.id;
@@ -363,7 +389,7 @@ function renderResumen(){
   let asig=0, enEsc=0, enEdu=0, enCdf=0, enTra=0;
   ESCUELAS.forEach(e => { const s=statsEscuela(e); asig+=e.asignadas; enEsc+=s.enEscuela; enEdu+=s.enEducar; enCdf+=s.enCdf; enTra+=s.enTransito; });
   const cajas = CAJAS.reduce((a,c)=>a+c.items.length,0);
-  const eduSinEsc = EDUCAR.filter(r=>!OWNER[r.n]).length;
+  const eduSinEsc = educarAll().filter(r=>!OWNER[r.n]).length;
   const cdfSinEsc = CDF.filter(r=>!OWNER[r.n]).length;
 
   document.getElementById('resumen-kpis').innerHTML = `
@@ -387,7 +413,7 @@ function renderResumen(){
     <td><strong>${s.faltan}</strong></td></tr>`).join('') : '<tr><td colspan="7" class="empty">Ninguna escuela tiene equipos fuera</td></tr>';
 
   document.getElementById('nb-esc').textContent=ESCUELAS.length;
-  document.getElementById('nb-edu').textContent=EDUCAR.filter(r=>!retiroActivoDe(r.n)&&!retiroEntregadoDe(r.n)).length;
+  document.getElementById('nb-edu').textContent=educarAll().filter(r=>!retiroActivoDe(r.n)&&!retiroEntregadoDe(r.n)).length;
   document.getElementById('nb-cdf').textContent=CDF.length;
   document.getElementById('nb-dep').textContent=cajas;
   document.getElementById('nb-inc').textContent=INCONSISTENCIAS.length;
@@ -460,7 +486,7 @@ function renderModal(){
 function renderEducar(){
   const q=(document.getElementById('edu-q').value||'').toLowerCase();
   const est=document.getElementById('edu-estado').value;
-  const rows=EDUCAR.filter(r=>{
+  const rows=educarAll().filter(r=>{
     const act=!!retiroActivoDe(r.n), ent=!!retiroEntregadoDe(r.n);
     if(est==='activo'&&(act||ent)) return false;
     if(est==='transito'&&!act) return false;
@@ -469,17 +495,65 @@ function renderEducar(){
   });
   document.getElementById('edu-body').innerHTML = rows.map(r=>{
     const own=OWNER[r.n], e=own?ESC_BY_ID[own]:null, act=retiroActivoDe(r.n), ent=retiroEntregadoDe(r.n);
-    const serie=(e&&(e.items.find(i=>i.n===r.n)||{}).s)||'-';
+    const serie=r.serie||(e&&(e.items.find(i=>i.n===r.n)||{}).s)||'-';
     const estado = act?'<span class="chip ch-blue">En transito</span>' : ent?'<span class="chip ch-green">Entregada</span>' : '<span class="chip ch-gold">En EDUCAR</span>';
     return `<tr${act||ent?' style="opacity:.6"':''}>
       <td>${e?`<span class="esc-link" onclick="openModal('${e.id}')">${e.nombre}</span>`:`<span style="color:var(--muted)">${r.escuela||'?'} <span class="chip ch-red">sin match</span></span>`}</td>
-      <td class="mono">${own||r.nro||'-'}</td><td class="mono">${r.id}</td><td class="mono">${serie}</td>
+      <td class="mono">${own||r.nro||'-'}</td>
+      <td class="mono">${r.id}${r.manual?' <span class="chip ch-blue" title="Cargado desde el dashboard">manual</span>':''}</td>
+      <td class="mono">${serie}</td>
       <td>${r.problema?`<span class="chip ch-red">${r.problema}</span>`:'-'}</td>
       <td>${estado}</td>
-      <td>${(act||ent)?'<span style="font-size:11.5px;color:var(--muted)">ver Retiros</span>':`<button class="btn btn-warning btn-sm" onclick="prefill('${r.n}')">Retirar</button>`}</td></tr>`;
+      <td>${(act||ent)?'<span style="font-size:11.5px;color:var(--muted)">ver Retiros</span>':`<button class="btn btn-warning btn-sm" onclick="prefill('${r.n}')">Retirar</button>`}
+        ${r.manual?`<button class="btn btn-outline btn-sm" title="Borrar este ingreso cargado a mano" onclick="borrarIngreso(${r.iid})">&#10005;</button>`:''}</td></tr>`;
   }).join('') || '<tr><td colspan="7" class="empty">Sin resultados</td></tr>';
-  document.getElementById('edu-sum').innerHTML=`<div class="sum-item">Mostrando <strong>${rows.length}</strong> de ${EDUCAR.length}</div>`;
-  document.getElementById('nb-edu').textContent=EDUCAR.filter(r=>!retiroActivoDe(r.n)&&!retiroEntregadoDe(r.n)).length;
+  const ing=getIngresos().length;
+  document.getElementById('edu-sum').innerHTML=`<div class="sum-item">Mostrando <strong>${rows.length}</strong> de ${educarAll().length}</div>`
+    + (ing?`<div class="sum-item">Cargados desde el dashboard: <strong>${ing}</strong></div>`:'');
+  document.getElementById('ing-count').textContent = ing?`${ing} cargados a mano`:'';
+  document.getElementById('nb-edu').textContent=educarAll().filter(r=>!retiroActivoDe(r.n)&&!retiroEntregadoDe(r.n)).length;
+}
+
+// ── ingresos a EDUCAR cargados desde el dashboard ───────────────
+function chkIngreso(){
+  const raw=document.getElementById('ing-id').value.trim();
+  const box=document.getElementById('ing-msg');
+  const serie=document.getElementById('ing-serie');
+  if(!raw){ box.innerHTML=''; serie.value=''; return; }
+  const n=normId(raw), own=OWNER[n];
+  if(EDU_BY_N[n]){ box.innerHTML='<span class="chip ch-amber">Ya figura en EDUCAR</span>'; return; }
+  const enCdf=CDF.find(c=>c.n===n);
+  if(enCdf){ box.innerHTML='<span class="chip ch-amber">Ojo: figura en Casa del Futuro</span>'; }
+  else if(own){
+    const e=ESC_BY_ID[own], it=e.items.find(i=>i.n===n)||{};
+    serie.value=it.s||'';
+    box.innerHTML=`<span class="chip ch-green">${e.nombre} (${own})</span> <span style="color:var(--muted)">${it.t||''}</span>`;
+  } else {
+    serie.value='';
+    box.innerHTML='<span class="chip ch-red">Ese ID no figura en el inventario de ninguna escuela</span>';
+  }
+}
+function addIngreso(){
+  const raw=document.getElementById('ing-id').value.trim();
+  if(!raw){ alert('Ingresa el ID (Cod. GC)'); return; }
+  const n=normId(raw);
+  if(EDU_BY_N[n]){ alert('Ese equipo ya figura en EDUCAR'); return; }
+  const own=OWNER[n]||'';
+  if(!own && !confirm('Ese ID no figura en el inventario de ninguna escuela. Cargarlo igual?')) return;
+  const arr=getIngresos();
+  arr.push({iid:Date.now(), manual:true, n, id:raw,
+    serie:document.getElementById('ing-serie').value.trim(),
+    escuela: own?ESC_BY_ID[own].nombre:'(sin escuela)', nro: own,
+    problema:document.getElementById('ing-prob').value.trim(),
+    ingreso:document.getElementById('ing-fecha').value});
+  saveIngresos(arr); rebuildEdu();
+  ['ing-id','ing-serie','ing-prob'].forEach(i=>document.getElementById(i).value='');
+  document.getElementById('ing-msg').innerHTML='<span class="chip ch-green">Ingreso registrado</span>';
+  renderAll();
+}
+function borrarIngreso(iid){
+  if(!confirm('Borrar este ingreso cargado a mano?')) return;
+  saveIngresos(getIngresos().filter(x=>x.iid!==iid)); rebuildEdu(); renderAll();
 }
 
 // ── CDF ─────────────────────────────────────────────────────────
@@ -525,14 +599,15 @@ function renderDeposito(){
 
 // ── retiros ─────────────────────────────────────────────────────
 function prefill(n){
-  const r=EDUCAR.find(x=>x.n===n); if(!r) return;
+  const r=educarAll().find(x=>x.n===n); if(!r) return;
   const own=OWNER[n], e=own?ESC_BY_ID[own]:null;
-  const serie=(e&&(e.items.find(i=>i.n===n)||{}).s)||'';
+  const serie=r.serie||(e&&(e.items.find(i=>i.n===n)||{}).s)||'';
   document.getElementById('ret-src').value=n;
   document.getElementById('ret-id').value=r.id;
   document.getElementById('ret-serie').value=serie;
   document.getElementById('ret-esc').value=own||'';
   document.getElementById('ret-obs').value=r.problema||'';
+  if(r.ingreso) document.getElementById('ret-ing').value=r.ingreso;
   document.getElementById('ret-fecha').value=new Date().toISOString().slice(0,10);
   document.getElementById('ret-form-title').textContent='Retirar de EDUCAR: '+r.id+(e?' -> '+e.nombre:'');
   document.getElementById('ret-cancel').classList.remove('hidden');
@@ -557,16 +632,16 @@ function addRetiro(){
     fechaIngreso:document.getElementById('ret-ing').value, fecha,
     resp:document.getElementById('ret-resp').value.trim(), obs:document.getElementById('ret-obs').value.trim(),
     devuelto:false, fechaEntrega:''});
-  saveRetiros(arr); cancelRetiro(); renderAll();
+  saveRetiros(arr); cancelRetiro(); rebuildEdu(); renderAll();
 }
 function entregar(rid){
   const a=getRetiros(); const r=a.find(x=>x.rid===rid);
   if(r){ r.devuelto=true; r.fechaEntrega=new Date().toISOString().slice(0,10); }
-  saveRetiros(a); renderAll();
+  saveRetiros(a); rebuildEdu(); renderAll();
 }
 function borrarRetiro(rid){
   if(!confirm('Eliminar este registro? El equipo vuelve a figurar en EDUCAR.')) return;
-  saveRetiros(getRetiros().filter(x=>x.rid!==rid)); renderAll();
+  saveRetiros(getRetiros().filter(x=>x.rid!==rid)); rebuildEdu(); renderAll();
 }
 function renderRetiros(){
   const f=document.getElementById('ret-filter').value;
