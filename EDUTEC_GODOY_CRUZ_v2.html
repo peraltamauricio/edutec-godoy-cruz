@@ -270,7 +270,7 @@ tbody tr:hover td{background:var(--bg)}
 
   <div class="section" id="section-central">
     <div class="sec-title">Sistema central EDUTEC Mendoza</div>
-    <div class="sec-sub">Consulta en vivo (solo lectura) a la API central. El equipamiento que figura ahi es la flota <strong>DGE / Conectar</strong> (identificada por CUPI), distinta del EXO EDUTEC que administra este dashboard.</div>
+    <div class="sec-sub">Consulta en vivo (solo lectura) a la API central. Muestra solo las escuelas de Godoy Cruz que tienen cargado un <strong>kit EDUTEC</strong> (30 netbooks + pizarra + proyector + notebook + gabinete). Ese equipamiento esta identificado por CUPI y es distinto del EXO que administra este dashboard.</div>
     <div class="search-row" style="align-items:center">
       <button class="btn btn-primary" onclick="loadCentral(true)">&#8635; Actualizar</button>
       <span id="cen-status" style="font-size:12.5px;color:var(--muted)"></span>
@@ -278,7 +278,7 @@ tbody tr:hover td{background:var(--bg)}
     <div id="cen-body" class="hidden">
       <div class="kpi-grid" id="cen-kpis"></div>
       <div class="card">
-        <div class="card-hd"><span class="card-title">Nuestras 46 escuelas en el central</span>
+        <div class="card-hd"><span class="card-title">Tus 46 escuelas primarias: EXO (tuyo) vs kit EDUTEC (central)</span>
           <input class="s-input" style="max-width:260px" type="text" placeholder="Buscar..." id="cen-q" oninput="renderCentralTable()"></div>
         <div class="tw"><table><thead><tr>
           <th>N&deg;</th><th>CUE</th><th>Escuela</th><th>EXO asignadas</th><th>DGE netbooks</th><th>DGE accesorios</th><th>Estado DGE</th><th>Carro DGE</th><th>Registros escuela</th><th></th>
@@ -286,7 +286,7 @@ tbody tr:hover td{background:var(--bg)}
         <div class="sum-row" id="cen-sum"></div>
       </div>
       <div class="card">
-        <div class="card-hd"><span class="card-title">Otras escuelas de Godoy Cruz con equipamiento en el central</span><span class="chip ch-gray" id="cen-otras-chip"></span></div>
+        <div class="card-hd"><span class="card-title">Escuelas EDUTEC secundarias (no estan en tu planilla)</span><span class="chip ch-gray" id="cen-otras-chip"></span></div>
         <div class="tw"><table><thead><tr><th>N&deg;</th><th>Escuela</th><th>Nivel</th><th>Netbooks</th><th>Accesorios</th><th></th></tr></thead><tbody id="cen-otras"></tbody></table></div>
       </div>
     </div>
@@ -739,7 +739,7 @@ async function loadCentral(force){
       cenGet('/inventory?department=ilike.*godoy*&select=type,serial,cupi,assigned_to,school_name,status,carro_numero,observations,updated_at'),
     ]);
     CEN={schools,inv,at:new Date()};
-    st.textContent=`Actualizado ${CEN.at.toLocaleTimeString('es-AR')} · ${schools.length} escuelas y ${inv.length} equipos de Godoy Cruz en el central`;
+    st.textContent=`Actualizado ${CEN.at.toLocaleTimeString('es-AR')}`;
     renderCentral();
   }catch(e){
     st.innerHTML=`<span class="chip ch-red">No se pudo consultar el central</span> ${e.message}`;
@@ -747,6 +747,7 @@ async function loadCentral(force){
   }
   cenLoading=false;
 }
+function cenKitSet(){ const m=cenEqByNum(); return new Set(Object.keys(m).filter(n=>m[n].filter(x=>x.type==='Netbook').length>=25)); }
 function cenByNum(){ const m={}; (CEN.schools||[]).forEach(x=>(m[x.school_number]=m[x.school_number]||[]).push(x)); return m; }
 function cenEqByNum(){ const m={}; (CEN.inv||[]).forEach(x=>(m[x.assigned_to]=m[x.assigned_to]||[]).push(x)); return m; }
 function stChip(st){
@@ -765,19 +766,21 @@ function renderCentral(){
   const dupl=ESCUELAS.filter(e=>(byNum[e.id]||[]).length>1).length;
   const eqNuestras=CEN.inv.filter(x=>nuestras.has(x.assigned_to));
   const stCount={}; eqNuestras.forEach(x=>{const k=(x.status||'?').toUpperCase(); stCount[k]=(stCount[k]||0)+1;});
-  const otras=new Set(CEN.inv.filter(x=>x.assigned_to&&!nuestras.has(x.assigned_to)).map(x=>x.assigned_to));
+  const kitSet=cenKitSet();
+  const otras=new Set([...kitSet].filter(n=>!nuestras.has(n)));
+  const eqKit=CEN.inv.filter(x=>kitSet.has(x.assigned_to));
   document.getElementById('cen-kpis').innerHTML=`
-    <div class="kpi blue"><div class="kpi-label">Escuelas GC en central</div><div class="kpi-val">${CEN.schools.length}</div><div class="kpi-sub">Todos los niveles</div></div>
-    <div class="kpi green"><div class="kpi-label">Nuestras 46 con kit DGE</div><div class="kpi-val">${kits}</div><div class="kpi-sub">de ${ESCUELAS.length}</div></div>
-    <div class="kpi gold"><div class="kpi-label">Equipos DGE en las 46</div><div class="kpi-val">${eqNuestras.length}</div><div class="kpi-sub">${Object.entries(stCount).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>`${v} ${k.toLowerCase()}`).join(' · ')}</div></div>
-    <div class="kpi amber"><div class="kpi-label">Otras escuelas con equipos</div><div class="kpi-val">${otras.size}</div><div class="kpi-sub">Secundarias, CENS, etc.</div></div>
+    <div class="kpi blue"><div class="kpi-label">Escuelas EDUTEC en el central</div><div class="kpi-val">${kitSet.size}</div><div class="kpi-sub">Con kit completo cargado</div></div>
+    <div class="kpi green"><div class="kpi-label">De nuestras 46 primarias</div><div class="kpi-val">${kits}</div><div class="kpi-sub">${ESCUELAS.length-kits} sin kit en el central</div></div>
+    <div class="kpi amber"><div class="kpi-label">Secundarias y otras</div><div class="kpi-val">${otras.size}</div><div class="kpi-sub">EDUTEC pero fuera de tu planilla</div></div>
+    <div class="kpi gold"><div class="kpi-label">Equipos EDUTEC en el central</div><div class="kpi-val">${eqKit.length}</div><div class="kpi-sub">${eqNuestras.length} en tus 46 · ${Object.entries(stCount).sort((a,b)=>b[1]-a[1]).slice(0,2).map(([k,v])=>`${v} ${k.toLowerCase()}`).join(' · ')}</div></div>
     <div class="kpi red"><div class="kpi-label">Nuestras escuelas duplicadas</div><div class="kpi-val">${dupl}</div><div class="kpi-sub">Registro anexo 0 y 1 en el central</div></div>`;
-  document.getElementById('nb-cen').textContent=CEN.inv.length;
+  document.getElementById('nb-cen').textContent=kitSet.size;
   renderCentralTable();
   const rowsO=[...otras].map(n=>{const eq=eqBy[n]||[]; const sc=(byNum[n]||[])[0]||{};
     return {n,nombre:eq[0].school_name||sc.school_name||'?',nivel:sc.nivel||'?',nb:eq.filter(x=>x.type==='Netbook').length,acc:eq.filter(x=>x.type!=='Netbook').length};})
     .sort((a,b)=>String(a.n).localeCompare(String(b.n)));
-  document.getElementById('cen-otras-chip').textContent=rowsO.length+' escuelas';
+  document.getElementById('cen-otras-chip').textContent=rowsO.length+' escuelas con kit';
   document.getElementById('cen-otras').innerHTML=rowsO.map(r=>`<tr><td class="mono">${r.n}</td><td>${r.nombre}</td><td style="font-size:12px;color:var(--muted)">${r.nivel}</td><td>${r.nb||'-'}</td><td>${r.acc||'-'}</td><td><button class="btn btn-outline btn-sm" onclick="openCModal('${r.n}')">Ver</button></td></tr>`).join('');
 }
 function renderCentralTable(){
