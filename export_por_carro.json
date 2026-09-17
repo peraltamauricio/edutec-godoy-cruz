@@ -1,18 +1,440 @@
 {
  "meta": {
-  "generado": "2026-09-16",
+  "generado": "2026-09-17",
   "fuente": "INVENTARIO GENERAL DE TODOS LOS CARROS (3).xlsx, hoja CARROS Y ESCUELAS",
-  "nota": "La escuela de cada equipo se toma del inventario por escuela (fuente de verdad), no de la columna escuela de la hoja de carros, que tiene errores de autorrelleno."
+  "nota": "Tipo por prefijo de ID; escuela segun inventario por escuela; filas basura descartadas; equipos repetidos en 2+ carros dejados en uno solo."
  },
  "resumen": {
   "carros": 48,
-  "equipos": 1884,
-  "netbooks": 1635
+  "equipos": 1838,
+  "netbooks": 1599,
+  "porTipo": {
+   "Docente": 48,
+   "Ebeam": 46,
+   "Proyector": 48,
+   "AP": 50,
+   "Gabinete": 47,
+   "Alumno": 1599
+  }
  },
+ "filasDescartadas": [
+  {
+   "carro": "1",
+   "fila": 43,
+   "id": "",
+   "serie": "REVISION JULIO"
+  },
+  {
+   "carro": "6",
+   "fila": 245,
+   "id": "",
+   "serie": "REVISION JULIO"
+  },
+  {
+   "carro": "10B",
+   "fila": 857,
+   "id": "",
+   "serie": "REVISION JULIO"
+  },
+  {
+   "carro": "4 B de junio",
+   "fila": 1933,
+   "id": "7061-",
+   "serie": ""
+  }
+ ],
+ "duplicadosEntreCarros": [
+  {
+   "id": "7061-441",
+   "escuela": "1-641",
+   "carros": [
+    "AULA DIGITAL N° 1 B",
+    "AULA DIGITAL N° 10B"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 10B"
+  },
+  {
+   "id": "7061-508",
+   "escuela": null,
+   "carros": [
+    "AULA DIGITAL N° 2B",
+    "AULA DIGITAL N° 7B"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 7B"
+  },
+  {
+   "id": "7061-185",
+   "escuela": "1-672",
+   "carros": [
+    "AULA DIGITAL N° 3A",
+    "AULA DIGITAL N°4 2021"
+   ],
+   "seMantieneEn": "AULA DIGITAL N°4 2021"
+  },
+  {
+   "id": "7061-734",
+   "escuela": "1-109",
+   "carros": [
+    "AULA DIGITAL 5 B",
+    "AULA DIGITAL N° 9B"
+   ],
+   "seMantieneEn": "AULA DIGITAL 5 B"
+  },
+  {
+   "id": "7063-26",
+   "escuela": "1-666",
+   "carros": [
+    "AULA DIGITAL 6 B",
+    "AULA DIGITAL N° 10B"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 10B"
+  },
+  {
+   "id": "6432-55",
+   "escuela": "1-337",
+   "carros": [
+    "AULA DIGITAL 6 B",
+    "AULA DIGITAL N° 9 FEBRERO 2022 CDF (17-02-23)"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 9 FEBRERO 2022 CDF (17-02-23)"
+  },
+  {
+   "id": "7063-25",
+   "escuela": "1-674",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 7B"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "2868-25",
+   "escuela": "1-674",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 7B"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "6432-54",
+   "escuela": "1-674",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 7B"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-672",
+   "escuela": "1-629",
+   "carros": [
+    "AULA DIGITAL 8 B",
+    "AULA DIGITAL N° 7B"
+   ],
+   "seMantieneEn": "AULA DIGITAL 8 B"
+  },
+  {
+   "id": "7061-851",
+   "escuela": "1-077",
+   "carros": [
+    "AULA DIGITAL 16B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 16B"
+  },
+  {
+   "id": "7061-850",
+   "escuela": "1-077",
+   "carros": [
+    "AULA DIGITAL 16B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 16B"
+  },
+  {
+   "id": "7061-875",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-858",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-859",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-873",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-869",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-856",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-867",
+   "escuela": "1-674",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 4 B de junio"
+  },
+  {
+   "id": "7061-871",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-866",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-872",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-865",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-860",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-861",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-879",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-857",
+   "escuela": "1-674",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 4 B de junio"
+  },
+  {
+   "id": "7061-877",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-876",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-855",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-863",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-870",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-868",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-874",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-864",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-849",
+   "escuela": "1-674",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 4 B de junio"
+  },
+  {
+   "id": "7061-880",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7061-862",
+   "escuela": "1-688",
+   "carros": [
+    "AULA DIGITAL 17 B",
+    "AULA DIGITAL N° 4 B de junio"
+   ],
+   "seMantieneEn": "AULA DIGITAL 17 B"
+  },
+  {
+   "id": "7063-14",
+   "escuela": "1-635",
+   "carros": [
+    "AULA DIGITAL N° 6 del 28 de Febrero",
+    "AULA DIGITAL N° 8 FEBRERO 2023 CDF (17-02-23)"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 6 del 28 de Febrero"
+  },
+  {
+   "id": "S/N",
+   "escuela": "1-617",
+   "carros": [
+    "AULA DIGITAL N° 3 del 28 de Febrero",
+    "AULA DIGITAL N° 5 del 28 de Febrero"
+   ],
+   "seMantieneEn": "AULA DIGITAL N° 3 del 28 de Febrero"
+  }
+ ],
+ "paraVerificar": [
+  {
+   "tipo": "Misma serie con dos codigos GC",
+   "clave": "1306810D00058",
+   "detalle": [
+    "7061-1328 en 6",
+    "7061-517 en 2B"
+   ]
+  },
+  {
+   "tipo": "Misma serie con dos codigos GC",
+   "clave": "1307306A00002",
+   "detalle": [
+    "2832-300 en 6 B",
+    "2832-303 en 10B"
+   ]
+  },
+  {
+   "tipo": "Mismo codigo GC con dos series",
+   "clave": "7061-815",
+   "detalle": [
+    "1304640D00298 en 3A",
+    "1304640D00346 en 3A"
+   ]
+  }
+ ],
  "carros": [
   {
    "carro": "AULA DIGITAL N° 1",
-   "netbooks": 65,
+   "netbooks": 64,
    "accesorios": {
     "Docente": 2,
     "Ebeam": 2,
@@ -20,7 +442,7 @@
     "AP": 2,
     "Gabinete": 2
    },
-   "equipos": 75,
+   "equipos": 74,
    "escuelas": [
     {
      "numero": "1-622",
@@ -44,7 +466,8 @@
     }
    ],
    "enConectarLab": 0,
-   "sinEscuelaIdentificada": 1,
+   "faltantes": 0,
+   "sinEscuelaIdentificada": 0,
    "items": [
     {
      "tipo": "Docente",
@@ -340,14 +763,6 @@
      "serie": "1310194d00167",
      "escuela": "1-622",
      "escuelaSegunHoja": "1-622",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": null,
-     "serie": "REVISION JULIO",
-     "escuela": null,
-     "escuelaSegunHoja": null,
      "marca": null
     },
     {
@@ -667,6 +1082,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -986,6 +1402,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -1310,6 +1727,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -1612,14 +2030,15 @@
   },
   {
    "carro": "AULA DIGITAL N° 6",
-   "netbooks": 65,
+   "netbooks": 64,
    "accesorios": {
     "Docente": 2,
     "Ebeam": 2,
     "Proyector": 2,
-    "AP": 4
+    "AP": 2,
+    "Gabinete": 2
    },
-   "equipos": 75,
+   "equipos": 74,
    "escuelas": [
     {
      "numero": "1-714",
@@ -1643,7 +2062,8 @@
     }
    ],
    "enConectarLab": 0,
-   "sinEscuelaIdentificada": 1,
+   "faltantes": 0,
+   "sinEscuelaIdentificada": 0,
    "items": [
     {
      "tipo": "Docente",
@@ -1678,7 +2098,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-49",
      "serie": "1311773A00003",
      "escuela": "1-579",
@@ -1942,14 +2362,6 @@
      "marca": null
     },
     {
-     "tipo": "Alumno",
-     "id": null,
-     "serie": "REVISION JULIO",
-     "escuela": null,
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
      "tipo": "Docente",
      "id": "2832-318",
      "serie": "1306810A00003",
@@ -1982,7 +2394,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-45",
      "serie": "1311773a00002",
      "escuela": "1-714",
@@ -2271,6 +2683,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -2578,7 +2991,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -2594,6 +3008,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -2629,7 +3044,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-40",
      "serie": "1303290a00009",
      "escuela": "1-191",
@@ -2901,7 +3316,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -2912,6 +3328,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -2947,7 +3364,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-46",
      "serie": "1290884A00002",
      "escuela": "1-640",
@@ -3214,14 +3631,15 @@
   },
   {
    "carro": "AULA DIGITAL N° 1 B",
-   "netbooks": 32,
+   "netbooks": 31,
    "accesorios": {
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
-   "equipos": 37,
+   "equipos": 36,
    "escuelas": [
     {
      "numero": "1-550",
@@ -3232,14 +3650,10 @@
      "numero": "1-356",
      "nombre": "Victoriano Montes",
      "equipos": 5
-    },
-    {
-     "numero": "1-641",
-     "nombre": "Juan de Coria Bohórquez",
-     "equipos": 1
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -3275,7 +3689,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-21",
      "serie": "1308196A00006",
      "escuela": "1-550",
@@ -3412,14 +3826,6 @@
     },
     {
      "tipo": "Alumno",
-     "id": "7061-441",
-     "serie": "1310194D00109",
-     "escuela": "1-641",
-     "escuelaSegunHoja": "1-550",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
      "id": "7061-420",
      "serie": "1310194D00110",
      "escuela": "1-550",
@@ -3542,14 +3948,15 @@
   },
   {
    "carro": "AULA DIGITAL N° 2B",
-   "netbooks": 32,
+   "netbooks": 31,
    "accesorios": {
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
-   "equipos": 37,
+   "equipos": 36,
    "escuelas": [
     {
      "numero": "1-688",
@@ -3567,8 +3974,9 @@
      "equipos": 1
     }
    ],
-   "enConectarLab": 0,
-   "sinEscuelaIdentificada": 31,
+   "enConectarLab": 26,
+   "faltantes": 5,
+   "sinEscuelaIdentificada": 30,
    "items": [
     {
      "tipo": "Docente",
@@ -3603,7 +4011,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-24",
      "serie": "1308196A00005",
      "escuela": "1-640",
@@ -3616,7 +4024,7 @@
      "serie": "1306810D00261",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3624,7 +4032,7 @@
      "serie": "1306810D00258",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3632,7 +4040,7 @@
      "serie": "1306810D00065",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3640,7 +4048,7 @@
      "serie": "1306810D00067",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3648,7 +4056,7 @@
      "serie": "1306810D00262",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3656,7 +4064,7 @@
      "serie": "1306810D00016",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3664,7 +4072,7 @@
      "serie": "1306810D00055",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3672,7 +4080,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -3680,7 +4088,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -3688,7 +4096,7 @@
      "serie": "1306810D00058",
      "escuela": "1-579",
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3696,7 +4104,7 @@
      "serie": "1306810D00083",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3704,7 +4112,7 @@
      "serie": "1306810D00080",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3712,15 +4120,7 @@
      "serie": "1306810D00015",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-508",
-     "serie": "1306810D00035",
-     "escuela": null,
-     "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3728,7 +4128,7 @@
      "serie": "1306810D00050",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3736,7 +4136,7 @@
      "serie": "1306810D00076",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3744,7 +4144,7 @@
      "serie": "1306810D00069",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3752,7 +4152,7 @@
      "serie": "1306810D00033",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3760,7 +4160,7 @@
      "serie": "1306810D00253",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3768,7 +4168,7 @@
      "serie": "1306810D00256",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3776,7 +4176,7 @@
      "serie": "1306810D00003",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3784,7 +4184,7 @@
      "serie": "1306810D00278",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3792,7 +4192,7 @@
      "serie": "1306810D00089",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3800,7 +4200,7 @@
      "serie": "1306810D00086",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3808,7 +4208,7 @@
      "serie": "1306810D00046",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3816,7 +4216,7 @@
      "serie": "1306810D00018",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3824,7 +4224,7 @@
      "serie": "1306810D00037",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3832,7 +4232,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -3840,7 +4240,7 @@
      "serie": "1306810D00043",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3848,7 +4248,7 @@
      "serie": "1306810D00017",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -3856,7 +4256,7 @@
      "serie": "1306810D00063",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -3864,13 +4264,13 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     }
    ]
   },
   {
    "carro": "AULA DIGITAL N° 3A",
-   "netbooks": 32,
+   "netbooks": 31,
    "accesorios": {
     "Docente": 1,
     "Ebeam": 1,
@@ -3878,7 +4278,7 @@
     "AP": 1,
     "Gabinete": 1
    },
-   "equipos": 37,
+   "equipos": 36,
    "escuelas": [
     {
      "numero": "1-669",
@@ -3889,14 +4289,10 @@
      "numero": "1-109",
      "nombre": "Juan Martínez de Rosas",
      "equipos": 4
-    },
-    {
-     "numero": "1-672",
-     "nombre": "Renato Della Santa",
-     "equipos": 1
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -3976,14 +4372,6 @@
      "id": "7061-816",
      "serie": "1304640d00294",
      "escuela": "1-669",
-     "escuelaSegunHoja": "1-669",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-185",
-     "serie": "1304640d00206",
-     "escuela": "1-672",
      "escuelaSegunHoja": "1-669",
      "marca": null
     },
@@ -4216,6 +4604,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -4523,8 +4912,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2,
-    "Gabinete": 1
+    "AP": 1,
+    "Gabinete": 2
    },
    "equipos": 38,
    "escuelas": [
@@ -4539,7 +4928,8 @@
      "equipos": 1
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 13,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 13,
    "items": [
     {
@@ -4583,7 +4973,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062- 50",
      "serie": "1303290A00007",
      "escuela": "1-674",
@@ -4596,7 +4986,7 @@
      "serie": "1304640d00256",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4604,7 +4994,7 @@
      "serie": "1304640d00266",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4612,7 +5002,7 @@
      "serie": "1304640d00320",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4620,7 +5010,7 @@
      "serie": "1304640d00267",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4628,7 +5018,7 @@
      "serie": "1304640d00275",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4668,7 +5058,7 @@
      "serie": "1304640d00316",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4716,7 +5106,7 @@
      "serie": "1304640d00342",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4772,7 +5162,7 @@
      "serie": "1304640d00280",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4780,7 +5170,7 @@
      "serie": "1304640d00168",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4796,7 +5186,7 @@
      "serie": "1304640d00307",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4804,7 +5194,7 @@
      "serie": "1304640d00163",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4836,7 +5226,7 @@
      "serie": "1304640d00315",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -4844,7 +5234,7 @@
      "serie": "1304640d00286",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     }
    ]
   },
@@ -4855,7 +5245,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -4866,6 +5257,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -4901,7 +5293,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-28",
      "serie": "1303290a00001",
      "escuela": "1-109",
@@ -5171,11 +5563,9 @@
    "netbooks": 32,
    "accesorios": {
     "Docente": 1,
-    "Ebeam": 1,
-    "Proyector": 1,
-    "AP": 1
+    "Proyector": 1
    },
-   "equipos": 36,
+   "equipos": 34,
    "escuelas": [
     {
      "numero": "1-674",
@@ -5185,15 +5575,11 @@
     {
      "numero": "1-666",
      "nombre": "Batalla del Pilar",
-     "equipos": 2
-    },
-    {
-     "numero": "1-337",
-     "nombre": "Juan F. Cobos",
      "equipos": 1
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 27,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 26,
    "items": [
     {
@@ -5202,15 +5588,7 @@
      "serie": "1307306a00002",
      "escuela": "1-666",
      "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Ebeam",
-     "id": "7063-26",
-     "serie": "BP24173120",
-     "escuela": "1-666",
-     "escuelaSegunHoja": "1-666",
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Proyector",
@@ -5218,15 +5596,7 @@
      "serie": "pdh5n0054804e",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "AP",
-     "id": "6432-55",
-     "serie": null,
-     "escuela": "1-337",
-     "escuelaSegunHoja": "1-337",
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5234,7 +5604,7 @@
      "serie": "1304640d00230",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5242,7 +5612,7 @@
      "serie": "1304640d00222",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5250,7 +5620,7 @@
      "serie": "1304640d00183",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5258,7 +5628,7 @@
      "serie": "1304640d00350",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5266,7 +5636,7 @@
      "serie": "1304640d00223",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5314,7 +5684,7 @@
      "serie": "1304640d00022",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5322,7 +5692,7 @@
      "serie": "1304640d00232",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5330,7 +5700,7 @@
      "serie": "1304640d00004",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5338,7 +5708,7 @@
      "serie": "1304640d00049",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5346,7 +5716,7 @@
      "serie": "1304640d00171",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5354,7 +5724,7 @@
      "serie": "1306810d00273",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5362,7 +5732,7 @@
      "serie": "1306810d00279",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5370,7 +5740,7 @@
      "serie": "1306810d00265",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5378,7 +5748,7 @@
      "serie": "1306810d00259",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5386,7 +5756,7 @@
      "serie": "1306810d00264",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5394,7 +5764,7 @@
      "serie": "1304640d00112",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5410,7 +5780,7 @@
      "serie": "1304640d00041",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5426,7 +5796,7 @@
      "serie": "1304640d00093",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5434,7 +5804,7 @@
      "serie": "1306810d00194",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5442,7 +5812,7 @@
      "serie": "1306810d00254",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5450,7 +5820,7 @@
      "serie": "1306810d00275",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5458,7 +5828,7 @@
      "serie": "1306810d00271",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5466,7 +5836,7 @@
      "serie": "1306810d00171",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5474,7 +5844,7 @@
      "serie": "1304640d00270",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5482,19 +5852,17 @@
      "serie": "1304640d00228",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     }
    ]
   },
   {
    "carro": "AULA DIGITAL N° 7B",
-   "netbooks": 32,
+   "netbooks": 31,
    "accesorios": {
-    "Ebeam": 1,
-    "Proyector": 1,
-    "AP": 2
+    "Gabinete": 1
    },
-   "equipos": 36,
+   "equipos": 32,
    "escuelas": [
     {
      "numero": "1-666",
@@ -5502,50 +5870,17 @@
      "equipos": 15
     },
     {
-     "numero": "1-674",
-     "nombre": "Prof. Gerónimo Sosa",
-     "equipos": 3
-    },
-    {
      "numero": "1-485",
      "nombre": "Avelino Maure",
      "equipos": 1
-    },
-    {
-     "numero": "1-629",
-     "nombre": "Carlos Pellegrini",
-     "equipos": 1
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 16,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 16,
    "items": [
     {
-     "tipo": "Ebeam",
-     "id": "7063-25",
-     "serie": null,
-     "escuela": "1-674",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Proyector",
-     "id": "2868-25",
-     "serie": null,
-     "escuela": "1-674",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "AP",
-     "id": "6432-54",
-     "serie": null,
-     "escuela": "1-674",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-26",
      "serie": "1290884A00019",
      "escuela": "1-485",
@@ -5558,7 +5893,7 @@
      "serie": "1310194d00107",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5566,7 +5901,7 @@
      "serie": "1310194d00031",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5574,7 +5909,7 @@
      "serie": "1310194d00073",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5582,7 +5917,7 @@
      "serie": "1310194d00175",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5590,7 +5925,7 @@
      "serie": "1310194d00015",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5634,19 +5969,11 @@
     },
     {
      "tipo": "Alumno",
-     "id": "7061-672",
-     "serie": "1310194d00188",
-     "escuela": "1-629",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
      "id": "7061-573",
      "serie": "1310194d00187",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5654,7 +5981,7 @@
      "serie": "1310194d00029",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5662,7 +5989,7 @@
      "serie": "1310194d00123",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5670,7 +5997,7 @@
      "serie": "1310194d00148",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5758,7 +6085,7 @@
      "serie": "1310194d00049",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5766,7 +6093,7 @@
      "serie": "1310194d00102",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5774,7 +6101,7 @@
      "serie": "1310194d00097",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5782,7 +6109,7 @@
      "serie": "1310194d00010",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5790,7 +6117,7 @@
      "serie": "1310194d00161",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5798,7 +6125,7 @@
      "serie": "1310194d00114",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -5806,7 +6133,7 @@
      "serie": "1310194d00168",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     }
    ]
   },
@@ -5833,6 +6160,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -6135,7 +6463,7 @@
   },
   {
    "carro": "AULA DIGITAL N° 9B",
-   "netbooks": 32,
+   "netbooks": 31,
    "accesorios": {
     "Docente": 1,
     "Ebeam": 1,
@@ -6143,7 +6471,7 @@
     "AP": 1,
     "Gabinete": 1
    },
-   "equipos": 37,
+   "equipos": 36,
    "escuelas": [
     {
      "numero": "1-658",
@@ -6158,10 +6486,11 @@
     {
      "numero": "1-109",
      "nombre": "Juan Martínez de Rosas",
-     "equipos": 7
+     "equipos": 6
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -6406,14 +6735,6 @@
     },
     {
      "tipo": "Alumno",
-     "id": "7061-734",
-     "serie": "1304640D00043",
-     "escuela": "1-109",
-     "escuelaSegunHoja": "1-109",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
      "id": "7061-733",
      "serie": "1304640D00164",
      "escuela": "1-109",
@@ -6464,7 +6785,7 @@
   },
   {
    "carro": "AULA DIGITAL N° 10B",
-   "netbooks": 65,
+   "netbooks": 64,
    "accesorios": {
     "Docente": 2,
     "Ebeam": 2,
@@ -6472,7 +6793,7 @@
     "AP": 2,
     "Gabinete": 2
    },
-   "equipos": 75,
+   "equipos": 74,
    "escuelas": [
     {
      "numero": "1-666",
@@ -6491,7 +6812,8 @@
     }
    ],
    "enConectarLab": 1,
-   "sinEscuelaIdentificada": 1,
+   "faltantes": 0,
+   "sinEscuelaIdentificada": 0,
    "items": [
     {
      "tipo": "Docente",
@@ -6787,14 +7109,6 @@
      "serie": "1304640d00188",
      "escuela": "1-666",
      "escuelaSegunHoja": "1-666",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": null,
-     "serie": "REVISION JULIO",
-     "escuela": null,
-     "escuelaSegunHoja": null,
      "marca": null
     },
     {
@@ -7102,7 +7416,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -7113,6 +7428,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -7148,7 +7464,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-23",
      "serie": "1308196A00002",
      "escuela": "1-485",
@@ -7420,7 +7736,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -7450,7 +7767,8 @@
      "equipos": 1
     }
    ],
-   "enConectarLab": 2,
+   "enConectarLab": 5,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 5,
    "items": [
     {
@@ -7467,7 +7785,7 @@
      "serie": "BP24173134",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Proyector",
@@ -7475,7 +7793,7 @@
      "serie": "PDH5N0051204E",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "AP",
@@ -7483,10 +7801,10 @@
      "serie": "1306810B00004",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-34",
      "serie": "1308196A00004",
      "escuela": "1-109",
@@ -7758,7 +8076,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -7774,6 +8093,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -7809,7 +8129,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-35",
      "serie": "1311773a00001",
      "escuela": "1-077",
@@ -8076,14 +8396,15 @@
   },
   {
    "carro": "AULA DIGITAL 17 B",
-   "netbooks": 33,
+   "netbooks": 29,
    "accesorios": {
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 1
+    "AP": 1,
+    "Gabinete": 1
    },
-   "equipos": 37,
+   "equipos": 34,
    "escuelas": [
     {
      "numero": "1-688",
@@ -8091,17 +8412,18 @@
      "equipos": 25
     },
     {
-     "numero": "1-674",
-     "nombre": "Prof. Gerónimo Sosa",
-     "equipos": 7
-    },
-    {
      "numero": "1-109",
      "nombre": "Juan Martínez de Rosas",
      "equipos": 5
+    },
+    {
+     "numero": "1-674",
+     "nombre": "Prof. Gerónimo Sosa",
+     "equipos": 4
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -8137,7 +8459,7 @@
      "marca": null
     },
     {
-     "tipo": "Alumno",
+     "tipo": "Gabinete",
      "id": "7062-29",
      "serie": "1303290a00005",
      "escuela": "1-688",
@@ -8226,14 +8548,6 @@
     },
     {
      "tipo": "Alumno",
-     "id": "7061-867",
-     "serie": "1306810d00204",
-     "escuela": "1-674",
-     "escuelaSegunHoja": "1-674",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
      "id": "7061-871",
      "serie": "1306810D00210",
      "escuela": "1-688",
@@ -8286,14 +8600,6 @@
      "serie": "1306810D00225",
      "escuela": "1-688",
      "escuelaSegunHoja": "1-688",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-857",
-     "serie": "1306810d00226",
-     "escuela": "1-674",
-     "escuelaSegunHoja": "1-674",
      "marca": null
     },
     {
@@ -8362,14 +8668,6 @@
     },
     {
      "tipo": "Alumno",
-     "id": "7061-849",
-     "serie": "1306810d00267",
-     "escuela": "1-674",
-     "escuelaSegunHoja": "1-674",
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
      "id": "7061-835",
      "serie": "1306810d00268",
      "escuela": "1-109",
@@ -8409,7 +8707,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 45,
    "escuelas": [
@@ -8424,7 +8723,8 @@
      "equipos": 1
     }
    ],
-   "enConectarLab": 1,
+   "enConectarLab": 2,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 2,
    "items": [
     {
@@ -8457,10 +8757,10 @@
      "serie": "1027817a00064",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062 - 1",
      "serie": "12225927d00002",
      "escuela": "1-675",
@@ -8813,6 +9113,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 1,
    "items": [
     {
@@ -9118,22 +9419,16 @@
    "netbooks": 32,
    "accesorios": {
     "Docente": 1,
-    "Ebeam": 1,
     "Proyector": 1,
     "AP": 1,
     "Gabinete": 1
    },
-   "equipos": 37,
+   "equipos": 36,
    "escuelas": [
     {
      "numero": "1-072",
      "nombre": "Roque Sáenz Peña",
      "equipos": 33
-    },
-    {
-     "numero": "1-635",
-     "nombre": "Coromina Segura",
-     "equipos": 1
     },
     {
      "numero": "1-544",
@@ -9152,6 +9447,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -9160,14 +9456,6 @@
      "serie": "1260896A00002",
      "escuela": "1-072",
      "escuelaSegunHoja": "1-072",
-     "marca": null
-    },
-    {
-     "tipo": "Ebeam",
-     "id": "7063 - 14",
-     "serie": "BP24172375",
-     "escuela": "1-635",
-     "escuelaSegunHoja": "1-337",
      "marca": null
     },
     {
@@ -9454,13 +9742,13 @@
   },
   {
    "carro": "AULA DIGITAL N° 6 FEBRERO 2023 CDF (17-02-23)",
-   "netbooks": 26,
+   "netbooks": 32,
    "accesorios": {
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
     "AP": 1,
-    "Gabinete": 7
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -9485,7 +9773,8 @@
      "equipos": 1
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 6,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 7,
    "items": [
     {
@@ -9737,52 +10026,52 @@
      "marca": null
     },
     {
-     "tipo": "Gabinete",
+     "tipo": "Alumno",
      "id": "7061 - 252",
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
-     "tipo": "Gabinete",
+     "tipo": "Alumno",
      "id": "7061 - 253",
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
-     "tipo": "Gabinete",
+     "tipo": "Alumno",
      "id": "7061 - 254",
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
-     "tipo": "Gabinete",
+     "tipo": "Alumno",
      "id": "7061 - 255",
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
-     "tipo": "Gabinete",
+     "tipo": "Alumno",
      "id": "7061 - 256",
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
-     "tipo": "Gabinete",
+     "tipo": "Alumno",
      "id": "7061 - 257",
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     }
    ]
   },
@@ -9810,6 +10099,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -10117,7 +10407,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -10148,6 +10439,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -10183,7 +10475,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062 - 10",
      "serie": null,
      "escuela": "1-580",
@@ -10455,7 +10747,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -10471,6 +10764,7 @@
     }
    ],
    "enConectarLab": 8,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 8,
    "items": [
     {
@@ -10506,7 +10800,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062 - 11",
      "serie": "1276229D00002",
      "escuela": "1-419",
@@ -10773,8 +11067,9 @@
   },
   {
    "carro": "AULA DIGITAL N° A Casa del Futuro",
-   "netbooks": 33,
+   "netbooks": 32,
    "accesorios": {
+    "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
     "AP": 1,
@@ -10799,10 +11094,11 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
-     "tipo": "Alumno",
+     "tipo": "Docente",
      "id": "2832-113",
      "serie": "1304640A00005",
      "escuela": "1-075",
@@ -11128,6 +11424,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 5,
    "sinEscuelaIdentificada": 5,
    "items": [
     {
@@ -11384,7 +11681,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -11392,7 +11689,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -11408,7 +11705,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -11416,7 +11713,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     },
     {
      "tipo": "Alumno",
@@ -11424,14 +11721,15 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "FALTA"
     }
    ]
   },
   {
    "carro": "AULA DIGITAL N° C Casa del Futuro",
-   "netbooks": 33,
+   "netbooks": 32,
    "accesorios": {
+    "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
     "AP": 1,
@@ -11451,10 +11749,11 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
-     "tipo": "Alumno",
+     "tipo": "Docente",
      "id": "2832-114",
      "serie": "1307306A00003",
      "escuela": "1-075",
@@ -11758,7 +12057,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 37,
    "escuelas": [
@@ -11768,7 +12068,8 @@
      "equipos": 31
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 6,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 6,
    "items": [
     {
@@ -11804,7 +12105,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-38",
      "serie": "1303290A00003",
      "escuela": "1-139",
@@ -12025,7 +12326,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -12033,7 +12334,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -12041,7 +12342,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -12049,7 +12350,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -12057,7 +12358,7 @@
      "serie": null,
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -12065,7 +12366,7 @@
      "serie": "1307306D00115",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     }
    ]
   },
@@ -12088,6 +12389,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -12398,7 +12700,8 @@
      "equipos": 37
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 1,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -12415,7 +12718,7 @@
      "serie": "BP24173130",
      "escuela": "1-456",
      "escuelaSegunHoja": "1-456",
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Proyector",
@@ -12728,6 +13031,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -13056,6 +13360,7 @@
     }
    ],
    "enConectarLab": 13,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 15,
    "items": [
     {
@@ -13360,15 +13665,15 @@
    "carro": "AULA DIGITAL N° 5 del 28 de Febrero",
    "netbooks": 32,
    "accesorios": {
-    "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
-   "equipos": 35,
+   "equipos": 34,
    "escuelas": [
     {
      "numero": "1-220",
      "nombre": "Misiones",
-     "equipos": 32
+     "equipos": 31
     },
     {
      "numero": "1-078",
@@ -13377,16 +13682,9 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
-    {
-     "tipo": "Proyector",
-     "id": "S/N",
-     "serie": "PD53N0048104E",
-     "escuela": "1-220",
-     "escuelaSegunHoja": "1-220",
-     "marca": null
-    },
     {
      "tipo": "AP",
      "id": "6432-35",
@@ -13396,7 +13694,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-13",
      "serie": "1290884A00014",
      "escuela": "1-220",
@@ -13689,7 +13987,8 @@
      "equipos": 1
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 2,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 3,
    "items": [
     {
@@ -13698,7 +13997,7 @@
      "serie": "1299071A00003",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Ebeam",
@@ -13794,7 +14093,7 @@
      "serie": "1299071D00066",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -14014,6 +14313,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -14329,6 +14629,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -14348,7 +14649,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 45,
    "escuelas": [
@@ -14359,6 +14661,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -14394,7 +14697,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062 - 2",
      "serie": null,
      "escuela": "1-004",
@@ -14730,7 +15033,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 45,
    "escuelas": [
@@ -14741,6 +15045,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -14776,7 +15081,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062 - 3",
      "serie": null,
      "escuela": "1-004",
@@ -15107,20 +15412,16 @@
   },
   {
    "carro": "AULA DIGITAL N° 4 B de junio",
-   "netbooks": 31,
+   "netbooks": 3,
    "accesorios": {
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
-   "equipos": 36,
+   "equipos": 8,
    "escuelas": [
-    {
-     "numero": "1-688",
-     "nombre": "Cerro Aconcagua",
-     "equipos": 24
-    },
     {
      "numero": "1-628",
      "nombre": "Leonardo Da Vinci",
@@ -15129,16 +15430,12 @@
     {
      "numero": "1-674",
      "nombre": "Prof. Gerónimo Sosa",
-     "equipos": 4
-    },
-    {
-     "numero": "1-077",
-     "nombre": "Provincia de Buenos Aires",
-     "equipos": 2
+     "equipos": 3
     }
    ],
    "enConectarLab": 0,
-   "sinEscuelaIdentificada": 1,
+   "faltantes": 0,
+   "sinEscuelaIdentificada": 0,
    "items": [
     {
      "tipo": "Docente",
@@ -15173,7 +15470,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-32",
      "serie": "1290884A00015",
      "escuela": "1-628",
@@ -15182,49 +15479,9 @@
     },
     {
      "tipo": "Alumno",
-     "id": "7061-855",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-856",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
      "id": "7061-857",
      "serie": null,
      "escuela": "1-674",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-858",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-859",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-869",
-     "serie": null,
-     "escuela": "1-688",
      "escuelaSegunHoja": null,
      "marca": null
     },
@@ -15238,193 +15495,9 @@
     },
     {
      "tipo": "Alumno",
-     "id": "7061-866",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-865",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-868",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-870",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-871",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-872",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-873",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-874",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-861",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-862",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-860",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-863",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-864",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-880",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-879",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-875",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
      "id": "7061-849",
      "serie": null,
      "escuela": "1-674",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-875",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-877",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-876",
-     "serie": null,
-     "escuela": "1-688",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-849",
-     "serie": null,
-     "escuela": "1-674",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-851",
-     "serie": null,
-     "escuela": "1-077",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-850",
-     "serie": null,
-     "escuela": "1-077",
-     "escuelaSegunHoja": null,
-     "marca": null
-    },
-    {
-     "tipo": "Alumno",
-     "id": "7061-",
-     "serie": null,
-     "escuela": null,
      "escuelaSegunHoja": null,
      "marca": null
     }
@@ -15447,6 +15520,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -15778,7 +15852,8 @@
     "Docente": 1,
     "Ebeam": 1,
     "Proyector": 1,
-    "AP": 2
+    "AP": 1,
+    "Gabinete": 1
    },
    "equipos": 45,
    "escuelas": [
@@ -15789,6 +15864,7 @@
     }
    ],
    "enConectarLab": 0,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 0,
    "items": [
     {
@@ -15824,7 +15900,7 @@
      "marca": null
     },
     {
-     "tipo": "AP",
+     "tipo": "Gabinete",
      "id": "7062-04",
      "serie": "12225927D00005",
      "escuela": "1-698",
@@ -16171,7 +16247,8 @@
      "equipos": 36
     }
    ],
-   "enConectarLab": 0,
+   "enConectarLab": 1,
+   "faltantes": 0,
    "sinEscuelaIdentificada": 1,
    "items": [
     {
@@ -16220,7 +16297,7 @@
      "serie": "1310723d00010",
      "escuela": null,
      "escuelaSegunHoja": null,
-     "marca": null
+     "marca": "CONECTAR LAB"
     },
     {
      "tipo": "Alumno",
@@ -16477,392 +16554,634 @@
   {
    "numero": "1-004",
    "nombre": "Dr. Guillermo Rawson",
+   "notebooksAsignadas": 80,
    "carros": [
-    "AULA DIGITAL N° 2 2021",
-    "AULA DIGITAL N° 3 2021"
+    {
+     "carro": "AULA DIGITAL N° 2 2021",
+     "netbooks": 40
+    },
+    {
+     "carro": "AULA DIGITAL N° 3 2021",
+     "netbooks": 40
+    }
    ],
-   "notebooksAsignadas": 80
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-016",
    "nombre": "Petrona G. de Burgoa",
+   "notebooksAsignadas": 23,
    "carros": [
-    "AULA DIGITAL N° 7 del 28 de Febrero"
+    {
+     "carro": "AULA DIGITAL N° 7 del 28 de Febrero",
+     "netbooks": 19
+    }
    ],
-   "notebooksAsignadas": 23
+   "sueltasEnOtrosCarros": 4
   },
   {
    "numero": "1-072",
    "nombre": "Roque Sáenz Peña",
+   "notebooksAsignadas": 45,
    "carros": [
-    "AULA DIGITAL N° 8 FEBRERO 2023 CDF (17-02-23)",
-    "AULA DIGITAL N° 10 FEBRERO 2023 CDF (17-02-23)",
-    "AULA DIGITAL N° 11 FEBRERO 2023 CDF (17-02-23)"
+    {
+     "carro": "AULA DIGITAL N° 8 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 31
+    },
+    {
+     "carro": "AULA DIGITAL N° 10 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 5
+    },
+    {
+     "carro": "AULA DIGITAL N° 11 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 8
+    }
    ],
-   "notebooksAsignadas": 45
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-075",
    "nombre": "Cordillera de los Andes",
+   "notebooksAsignadas": 35,
    "carros": [
-    "AULA DIGITAL N° 1 del 28 de Febrero",
-    "AULA DIGITAL N° 3 del 28 de Febrero"
+    {
+     "carro": "AULA DIGITAL N° 1 del 28 de Febrero",
+     "netbooks": 31
+    },
+    {
+     "carro": "AULA DIGITAL N° 3 del 28 de Febrero",
+     "netbooks": 5
+    }
    ],
-   "notebooksAsignadas": 35
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-077",
    "nombre": "Provincia de Buenos Aires",
+   "notebooksAsignadas": 19,
    "carros": [
-    "AULA DIGITAL 16B"
+    {
+     "carro": "AULA DIGITAL 16B",
+     "netbooks": 19
+    }
    ],
-   "notebooksAsignadas": 19
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-078",
    "nombre": "Santiago del Estero",
+   "notebooksAsignadas": 15,
    "carros": [
-    "AULA DIGITAL N° 4 del 28 de Febrero"
+    {
+     "carro": "AULA DIGITAL N° 4 del 28 de Febrero",
+     "netbooks": 12
+    }
    ],
-   "notebooksAsignadas": 15
+   "sueltasEnOtrosCarros": 3
   },
   {
    "numero": "1-108",
    "nombre": "Dr. Julio Lemos",
+   "notebooksAsignadas": 27,
    "carros": [
-    "AULA DIGITAL N° 5",
-    "AULA DIGITAL N° 6"
+    {
+     "carro": "AULA DIGITAL N° 5",
+     "netbooks": 22
+    },
+    {
+     "carro": "AULA DIGITAL N° 6",
+     "netbooks": 5
+    }
    ],
-   "notebooksAsignadas": 27
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-109",
    "nombre": "Juan Martínez de Rosas",
+   "notebooksAsignadas": 57,
    "carros": [
-    "AULA DIGITAL 5 B",
-    "AULA DIGITAL 8 B",
-    "AULA DIGITAL N° 9B",
-    "AULA DIGITAL 17 B"
+    {
+     "carro": "AULA DIGITAL 5 B",
+     "netbooks": 32
+    },
+    {
+     "carro": "AULA DIGITAL 8 B",
+     "netbooks": 9
+    },
+    {
+     "carro": "AULA DIGITAL N° 9B",
+     "netbooks": 6
+    },
+    {
+     "carro": "AULA DIGITAL 17 B",
+     "netbooks": 5
+    }
    ],
-   "notebooksAsignadas": 57
+   "sueltasEnOtrosCarros": 4
   },
   {
    "numero": "1-116",
    "nombre": "Dr. Tomás Godoy Cruz",
+   "notebooksAsignadas": 35,
    "carros": [
-    "AULA DIGITAL N° 3"
+    {
+     "carro": "AULA DIGITAL N° 3",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 35
+   "sueltasEnOtrosCarros": 3
   },
   {
    "numero": "1-139",
    "nombre": "Caseros",
+   "notebooksAsignadas": 26,
    "carros": [
-    "AULA DIGITAL N° D Casa del Futuro"
+    {
+     "carro": "AULA DIGITAL N° D Casa del Futuro",
+     "netbooks": 26
+    }
    ],
-   "notebooksAsignadas": 26
+   "sueltasEnOtrosCarros": 1
   },
   {
    "numero": "1-191",
    "nombre": "Julio Leónidas de Aguirre",
+   "notebooksAsignadas": 10,
    "carros": [
-    "AULA DIGITAL N° 9"
+    {
+     "carro": "AULA DIGITAL N° 9",
+     "netbooks": 10
+    }
    ],
-   "notebooksAsignadas": 10
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-220",
    "nombre": "Misiones",
+   "notebooksAsignadas": 29,
    "carros": [
-    "AULA DIGITAL N° 5 del 28 de Febrero"
+    {
+     "carro": "AULA DIGITAL N° 5 del 28 de Febrero",
+     "netbooks": 29
+    }
    ],
-   "notebooksAsignadas": 29
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-337",
    "nombre": "Juan F. Cobos",
+   "notebooksAsignadas": 32,
    "carros": [
-    "AULA DIGITAL N° 9 FEBRERO 2022 CDF (17-02-23)"
+    {
+     "carro": "AULA DIGITAL N° 9 FEBRERO 2022 CDF (17-02-23)",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 32
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-356",
    "nombre": "Victoriano Montes",
+   "notebooksAsignadas": 41,
    "carros": [
-    "AULA DIGITAL N° 1 B",
-    "AULA DIGITAL N° 3B"
+    {
+     "carro": "AULA DIGITAL N° 1 B",
+     "netbooks": 5
+    },
+    {
+     "carro": "AULA DIGITAL N° 3B",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 41
+   "sueltasEnOtrosCarros": 4
   },
   {
    "numero": "1-408",
    "nombre": "República del Perú",
+   "notebooksAsignadas": 42,
    "carros": [
-    "AULA DIGITAL N° 4",
-    "AULA DIGITAL N° 5"
+    {
+     "carro": "AULA DIGITAL N° 4",
+     "netbooks": 32
+    },
+    {
+     "carro": "AULA DIGITAL N° 5",
+     "netbooks": 10
+    }
    ],
-   "notebooksAsignadas": 42
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-419",
    "nombre": "Emaús",
+   "notebooksAsignadas": 16,
    "carros": [
-    "AULA DIGITAL N° 11 FEBRERO 2023 CDF (17-02-23)"
+    {
+     "carro": "AULA DIGITAL N° 11 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 16
+    }
    ],
-   "notebooksAsignadas": 16
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-456",
    "nombre": "Agustín Álvarez",
+   "notebooksAsignadas": 45,
    "carros": [
-    "AULA DIGITAL 15B",
-    "AULA DIGITAL N° 2 del 28 de Febrero"
+    {
+     "carro": "AULA DIGITAL 15B",
+     "netbooks": 12
+    },
+    {
+     "carro": "AULA DIGITAL N° 2 del 28 de Febrero",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 45
+   "sueltasEnOtrosCarros": 1
   },
   {
    "numero": "1-485",
    "nombre": "Avelino Maure",
+   "notebooksAsignadas": 57,
    "carros": [
-    "AULA DIGITAL N° 9",
-    "AULA DIGITAL 14B"
+    {
+     "carro": "AULA DIGITAL N° 9",
+     "netbooks": 22
+    },
+    {
+     "carro": "AULA DIGITAL 14B",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 57
+   "sueltasEnOtrosCarros": 3
   },
   {
    "numero": "1-544",
    "nombre": "Dr. Severo Gutiérrez del Castillo",
+   "notebooksAsignadas": 33,
    "carros": [
-    "AULA DIGITAL N° 7 FEBRERO 2022"
+    {
+     "carro": "AULA DIGITAL N° 7 FEBRERO 2022",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 33
+   "sueltasEnOtrosCarros": 1
   },
   {
    "numero": "1-550",
    "nombre": "Fragata Sarmiento",
+   "notebooksAsignadas": 27,
    "carros": [
-    "AULA DIGITAL N° 1 B"
+    {
+     "carro": "AULA DIGITAL N° 1 B",
+     "netbooks": 26
+    }
    ],
-   "notebooksAsignadas": 27
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-552",
    "nombre": "Bandera Argentina",
+   "notebooksAsignadas": 19,
    "carros": [
-    "AULA DIGITAL N° 4B"
+    {
+     "carro": "AULA DIGITAL N° 4B",
+     "netbooks": 19
+    }
    ],
-   "notebooksAsignadas": 19
+   "sueltasEnOtrosCarros": 1
   },
   {
    "numero": "1-579",
    "nombre": "Petroleros Argentinos",
+   "notebooksAsignadas": 23,
    "carros": [
-    "AULA DIGITAL N° 6"
+    {
+     "carro": "AULA DIGITAL N° 6",
+     "netbooks": 23
+    }
    ],
-   "notebooksAsignadas": 23
+   "sueltasEnOtrosCarros": 1
   },
   {
    "numero": "1-580",
    "nombre": "Dr. Carlos Padín",
+   "notebooksAsignadas": 19,
    "carros": [
-    "AULA DIGITAL N° 10 FEBRERO 2023 CDF (17-02-23)"
+    {
+     "carro": "AULA DIGITAL N° 10 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 19
+    }
    ],
-   "notebooksAsignadas": 19
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-585",
    "nombre": "1° de Febrero",
+   "notebooksAsignadas": 26,
    "carros": [
-    "AULA DIGITAL N° 6 FEBRERO 2023 CDF (17-02-23)"
+    {
+     "carro": "AULA DIGITAL N° 6 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 26
+    }
    ],
-   "notebooksAsignadas": 26
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-617",
    "nombre": "San Gabriel",
+   "notebooksAsignadas": 40,
    "carros": [
-    "AULA DIGITAL N° 3 del 28 de Febrero",
-    "AULA DIGITAL N° 7 del 28 de Febrero"
+    {
+     "carro": "AULA DIGITAL N° 3 del 28 de Febrero",
+     "netbooks": 27
+    },
+    {
+     "carro": "AULA DIGITAL N° 7 del 28 de Febrero",
+     "netbooks": 13
+    }
    ],
-   "notebooksAsignadas": 40
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-620",
    "nombre": "Pedro Regalado de la Plaza",
+   "notebooksAsignadas": 32,
    "carros": [
-    "AULA DIGITAL N° C Casa del Futuro"
+    {
+     "carro": "AULA DIGITAL N° C Casa del Futuro",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 32
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-622",
    "nombre": "Padre Pedro Arce",
+   "notebooksAsignadas": 32,
    "carros": [
-    "AULA DIGITAL N° 1"
+    {
+     "carro": "AULA DIGITAL N° 1",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 32
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-623",
    "nombre": "Manuel Pacífico Antequeda",
+   "notebooksAsignadas": 27,
    "carros": [
-    "AULA DIGITAL N° 1"
+    {
+     "carro": "AULA DIGITAL N° 1",
+     "netbooks": 27
+    }
    ],
-   "notebooksAsignadas": 27
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-624",
    "nombre": "Fray Luis Beltrán",
+   "notebooksAsignadas": 51,
    "carros": [
-    "AULA DIGITAL 15B",
-    "AULA DIGITAL N° 6 del 28 de Febrero",
-    "AULA DIGITAL SUPERVIELLE (30-05-23)"
+    {
+     "carro": "AULA DIGITAL 15B",
+     "netbooks": 15
+    },
+    {
+     "carro": "AULA DIGITAL N° 6 del 28 de Febrero",
+     "netbooks": 5
+    },
+    {
+     "carro": "AULA DIGITAL SUPERVIELLE (30-05-23)",
+     "netbooks": 31
+    }
    ],
-   "notebooksAsignadas": 51
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-628",
    "nombre": "Leonardo Da Vinci",
+   "notebooksAsignadas": 15,
    "carros": [
-    "AULA DIGITAL N° 9B",
-    "AULA DIGITAL N° 4 B de junio"
+    {
+     "carro": "AULA DIGITAL N° 9B",
+     "netbooks": 15
+    },
+    {
+     "carro": "AULA DIGITAL N° 4 B de junio",
+     "netbooks": 0
+    }
    ],
-   "notebooksAsignadas": 15
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-629",
    "nombre": "Carlos Pellegrini",
+   "notebooksAsignadas": 23,
    "carros": [
-    "AULA DIGITAL 8 B"
+    {
+     "carro": "AULA DIGITAL 8 B",
+     "netbooks": 23
+    }
    ],
-   "notebooksAsignadas": 23
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-630",
    "nombre": "Fernando Fader",
+   "notebooksAsignadas": 24,
    "carros": [
-    "AULA DIGITAL N° B Casa del Futuro"
+    {
+     "carro": "AULA DIGITAL N° B Casa del Futuro",
+     "netbooks": 23
+    }
    ],
-   "notebooksAsignadas": 24
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-635",
    "nombre": "Coromina Segura",
+   "notebooksAsignadas": 25,
    "carros": [
-    "AULA DIGITAL N° 6 del 28 de Febrero"
+    {
+     "carro": "AULA DIGITAL N° 6 del 28 de Febrero",
+     "netbooks": 25
+    }
    ],
-   "notebooksAsignadas": 25
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-640",
    "nombre": "Reyes Católicos",
+   "notebooksAsignadas": 48,
    "carros": [
-    "AULA DIGITAL N° 8",
-    "AULA DIGITAL N° 10"
+    {
+     "carro": "AULA DIGITAL N° 8",
+     "netbooks": 13
+    },
+    {
+     "carro": "AULA DIGITAL N° 10",
+     "netbooks": 32
+    }
    ],
-   "notebooksAsignadas": 48
+   "sueltasEnOtrosCarros": 3
   },
   {
    "numero": "1-641",
    "nombre": "Juan de Coria Bohórquez",
+   "notebooksAsignadas": 30,
    "carros": [
-    "AULA DIGITAL N° 10B"
+    {
+     "carro": "AULA DIGITAL N° 10B",
+     "netbooks": 30
+    }
    ],
-   "notebooksAsignadas": 30
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-658",
    "nombre": "Tropero Sosa",
+   "notebooksAsignadas": 10,
    "carros": [
-    "AULA DIGITAL N° 9B"
+    {
+     "carro": "AULA DIGITAL N° 9B",
+     "netbooks": 10
+    }
    ],
-   "notebooksAsignadas": 10
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-666",
    "nombre": "Batalla del Pilar",
+   "notebooksAsignadas": 49,
    "carros": [
-    "AULA DIGITAL N° 7B",
-    "AULA DIGITAL N° 10B"
+    {
+     "carro": "AULA DIGITAL N° 7B",
+     "netbooks": 15
+    },
+    {
+     "carro": "AULA DIGITAL N° 10B",
+     "netbooks": 30
+    }
    ],
-   "notebooksAsignadas": 49
+   "sueltasEnOtrosCarros": 4
   },
   {
    "numero": "1-669",
    "nombre": "Aquiles Wilson Mazziotti",
+   "notebooksAsignadas": 28,
    "carros": [
-    "AULA DIGITAL N° 3A"
+    {
+     "carro": "AULA DIGITAL N° 3A",
+     "netbooks": 27
+    }
    ],
-   "notebooksAsignadas": 28
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-672",
    "nombre": "Renato Della Santa",
+   "notebooksAsignadas": 40,
    "carros": [
-    "AULA DIGITAL N°4 2021"
+    {
+     "carro": "AULA DIGITAL N°4 2021",
+     "netbooks": 37
+    }
    ],
-   "notebooksAsignadas": 40
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-674",
    "nombre": "Prof. Gerónimo Sosa",
+   "notebooksAsignadas": 23,
    "carros": [
-    "AULA DIGITAL 6 B",
-    "AULA DIGITAL 16B",
-    "AULA DIGITAL 17 B"
+    {
+     "carro": "AULA DIGITAL 6 B",
+     "netbooks": 7
+    },
+    {
+     "carro": "AULA DIGITAL 16B",
+     "netbooks": 13
+    }
    ],
-   "notebooksAsignadas": 23
+   "sueltasEnOtrosCarros": 3
   },
   {
    "numero": "1-675",
    "nombre": "San Francisco de Asís",
+   "notebooksAsignadas": 46,
    "carros": [
-    "AULA DIGITAL N° 1 FEBRERO 2023 CDF (17-02-23)",
-    "AULA DIGITAL N° 10 FEBRERO 2023 CDF (17-02-23)"
+    {
+     "carro": "AULA DIGITAL N° 1 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 39
+    },
+    {
+     "carro": "AULA DIGITAL N° 10 FEBRERO 2023 CDF (17-02-23)",
+     "netbooks": 7
+    }
    ],
-   "notebooksAsignadas": 46
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-688",
    "nombre": "Cerro Aconcagua",
+   "notebooksAsignadas": 24,
    "carros": [
-    "AULA DIGITAL 17 B",
-    "AULA DIGITAL N° 4 B de junio"
+    {
+     "carro": "AULA DIGITAL 17 B",
+     "netbooks": 24
+    }
    ],
-   "notebooksAsignadas": 24
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-691",
    "nombre": "Raúl Scalabrini Ortiz",
+   "notebooksAsignadas": 19,
    "carros": [
-    "AULA DIGITAL N° 8"
+    {
+     "carro": "AULA DIGITAL N° 8",
+     "netbooks": 19
+    }
    ],
-   "notebooksAsignadas": 19
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-698",
    "nombre": "Provincia de Mendoza",
+   "notebooksAsignadas": 40,
    "carros": [
-    "AULA DIGITAL N° 4 (2021)"
+    {
+     "carro": "AULA DIGITAL N° 4 (2021)",
+     "netbooks": 40
+    }
    ],
-   "notebooksAsignadas": 40
+   "sueltasEnOtrosCarros": 0
   },
   {
    "numero": "1-712",
    "nombre": "Jesús de Nazaret",
+   "notebooksAsignadas": 34,
    "carros": [
-    "AULA DIGITAL N° A Casa del Futuro"
+    {
+     "carro": "AULA DIGITAL N° A Casa del Futuro",
+     "netbooks": 31
+    }
    ],
-   "notebooksAsignadas": 34
+   "sueltasEnOtrosCarros": 3
   },
   {
    "numero": "1-714",
    "nombre": "Ciudad de Brasilia",
+   "notebooksAsignadas": 33,
    "carros": [
-    "AULA DIGITAL N° 6"
+    {
+     "carro": "AULA DIGITAL N° 6",
+     "netbooks": 33
+    }
    ],
-   "notebooksAsignadas": 33
+   "sueltasEnOtrosCarros": 0
   }
  ]
 }
